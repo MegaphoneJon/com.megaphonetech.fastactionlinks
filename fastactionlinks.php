@@ -8,13 +8,11 @@ require_once 'fastactionlinks.civix.php';
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_links
  */
 function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
-  if ($op == 'contact.selector.actions' && $objectId == 202) {
-
-//    CRM_Core_Error::debug('objectId', $objectId);
+  if ($op == 'contact.selector.actions') {
     $links = array();
     $actionLinks[] = array(
         'name' => 'Test Link 2',
-        'url' => 'civicrm/contact/view/group',
+        'url' => '#',
         'qs' => 'cid=%%id%%',
         'title' => 'Alt Text Here',
         'ref' => 'fast-action-link-2',
@@ -22,7 +20,7 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
     );
     $actionLinks[] = array(
       'name' => 'Test Link 1',
-      'url' => 'civicrm/contact/view/group',
+      'url' => '#',
       'qs' => 'cid=%%id%%',
         'title' => 'Alt Text Here',
         'ref' => 'fast-action-link-1',
@@ -32,9 +30,12 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
     foreach ($actionLinks as $actionLink) {
       array_unshift($links, $actionLink);
     }
-    CRM_Core_Error::debug('links', $links);
-    CRM_Core_Error::debug('mask', $mask);
-    CRM_Core_Error::debug('values', $values);
+  // Debug data.
+    if ($op == 'contact.selector.actions' && ($objectId == 202)) {
+      CRM_Core_Error::debug('links', $links);
+      CRM_Core_Error::debug('mask', $mask);
+      CRM_Core_Error::debug('values', $values);
+    }
   }
 }
 
