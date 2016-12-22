@@ -3,6 +3,44 @@
 require_once 'fastactionlinks.civix.php';
 
 /**
+ * Implements hook_civicrm_links().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_links
+ */
+function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
+  if ($op == 'contact.selector.actions' && $objectId == 202) {
+
+//    CRM_Core_Error::debug('objectId', $objectId);
+    $links = array();
+    $actionLinks[] = array(
+      'name' => 'Test Link 1',
+      'url' => 'civicrm/contact/view/group',
+      'qs' => 'reset=1&action=add&cid=%%id%%&context=group&key=94107a07335810463b55f8b5523c5e12_8318',
+      'title' => 'Alt Text Here',
+        'ref' => 'fast-action-link-1',
+        'class' => 'fast-action-link',
+    );
+    foreach ($actionLinks as $actionLink) {
+      array_unshift($links, $actionLink);
+    }
+    CRM_Core_Error::debug('links', $links);
+    CRM_Core_Error::debug('mask', $mask);
+    CRM_Core_Error::debug('values', $values);
+  }
+}
+
+/**
+ * Implementation of hook_civicrm_buildForm
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
+ */
+function fastactionlinks_civicrm_buildForm($formName, &$form) {
+  if ($formName == 'CRM_Contact_Form_Search_Advanced') {
+    CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
+  }
+}
+
+/**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
