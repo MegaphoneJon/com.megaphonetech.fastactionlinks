@@ -23,8 +23,7 @@
     <name>uf_group_id</name>
     <title>Profile ID</title>
     <type>int unsigned</type>
-    <required>true</required>
-    <comment>Which profile this link is associated with.</comment>
+    <comment>Which profile this link is associated with.  NULL indicates "default search".</comment>
     <add>4.6</add>
     <pseudoconstant>
       <table>civicrm_uf_group</table>
