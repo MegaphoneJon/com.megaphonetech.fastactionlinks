@@ -44,11 +44,28 @@
   </foreignKey>
   <field>
     <name>action</name>
-    <title>The action associated with this link</title>
+    <title>Action</title>
     <type>varchar</type>
     <length>64</length>
     <required>true</required>
-    <comment>e.g. addToGroup, removeFromGroup.</comment>
+    <comment>The action associated with this link. E.g. addToGroup, removeFromGroup.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>label</name>
+    <title>Label</title>
+    <type>varchar</type>
+    <length>32</length>
+    <required>true</required>
+    <comment>This is the displayed text for the link.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>hovertext</name>
+    <title>Hover Text</title>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>This is the text displayed when you hover the mouse over the link.  It's a good place to put a description.</comment>
     <add>4.6</add>
   </field>
   <field>

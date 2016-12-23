@@ -8,7 +8,9 @@ CREATE TABLE `civicrm_fast_action_link` (
 
      `id` int unsigned NOT NULL AUTO_INCREMENT  COMMENT 'Unique FastActionLink ID',
      `uf_group_id` int unsigned NOT NULL   COMMENT 'Which profile this link is associated with.',
-     `action` varchar(64) NOT NULL   COMMENT 'e.g. addToGroup, removeFromGroup.',
+     `action` varchar(64) NOT NULL   COMMENT 'The action associated with this link. E.g. addToGroup, removeFromGroup.',
+     `label` varchar(32) NOT NULL   COMMENT 'This is the displayed text for the link.',
+     `hovertext` varchar(255)    COMMENT 'This is the text displayed when you hover the mouse over the link.  It\'s a good place to put a description.',
      `action_entity_id` int unsigned    COMMENT 'If the action requires an entity ID, it is stored here.',
      `dim_on_use` tinyint   DEFAULT 1 COMMENT 'Should this link be disabled and the corresponding search result dimmed on click?',
      `is_active` tinyint   DEFAULT 1 COMMENT 'Is this link currently active?  If not, do not show.',
