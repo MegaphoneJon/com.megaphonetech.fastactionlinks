@@ -69,7 +69,7 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
   /**
    * If the action requires an entity ID, it is stored here.
    *
-   * @var unsigned int
+   * @var int unsigned
    */
   public $action_entity_id;
   /**

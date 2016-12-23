@@ -54,7 +54,7 @@
   <field>
     <name>action_entity_id</name>
     <title>Action Entity ID</title>
-    <type>unsigned int</type>
+    <type>int unsigned</type>
     <comment>If the action requires an entity ID, it is stored here.</comment>
     <add>4.6</add>
   </field>
