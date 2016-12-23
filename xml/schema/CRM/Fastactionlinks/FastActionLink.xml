@@ -3,7 +3,7 @@
 <table>
   <base>CRM/Fastactionlinks</base>
   <class>FastActionLink</class>
-  <name>civicrm_fastactionlink</name>
+  <name>civicrm_fast_action_link</name>
   <comment></comment>
   <add>4.6</add>
   <log>true</log>

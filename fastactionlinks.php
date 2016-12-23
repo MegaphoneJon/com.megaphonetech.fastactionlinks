@@ -2,6 +2,13 @@
 
 require_once 'fastactionlinks.civix.php';
 
+function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
+  $entityTypes['CRM_Fastactionlinks_DAO_FastActionLink'] = array(
+    'name' => 'FastActionLink',
+    'class' => 'CRM_Fastactionlinks_DAO_FastActionLink',
+    'table' => 'civicrm_fast_action_link',
+  );
+}
 /**
  * Implements hook_civicrm_links().
  *
@@ -11,26 +18,26 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
   if ($op == 'contact.selector.actions') {
     $links = array();
     $actionLinks[] = array(
-        'name' => 'Test Link 2',
-        'url' => '#',
-        'qs' => 'cid=%%id%%',
-        'title' => 'Alt Text Here',
-        'ref' => 'fast-action-link-2',
-        'class' => 'fast-action-link',
+      'name' => 'Test Link 2',
+      'url' => '#',
+      'qs' => 'cid=%%id%%',
+      'title' => 'Alt Text Here',
+      'ref' => 'fast-action-link-2',
+      'class' => 'fast-action-link',
     );
     $actionLinks[] = array(
       'name' => 'Test Link 1',
       'url' => '#',
       'qs' => 'cid=%%id%%',
-        'title' => 'Alt Text Here',
-        'ref' => 'fast-action-link-1',
-        'class' => 'fast-action-link',
+      'title' => 'Alt Text Here',
+      'ref' => 'fast-action-link-1',
+      'class' => 'fast-action-link',
     );
 
     foreach ($actionLinks as $actionLink) {
       array_unshift($links, $actionLink);
     }
-  // Debug data.
+    // Debug data.
     if ($op == 'contact.selector.actions' && ($objectId == 202)) {
       CRM_Core_Error::debug('links', $links);
       CRM_Core_Error::debug('mask', $mask);
@@ -40,7 +47,7 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
 }
 
 /**
- * Implementation of hook_civicrm_buildForm
+ * Implements hook_civicrm_buildForm().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
  */
@@ -80,10 +87,10 @@ function fastactionlinks_civicrm_install() {
 }
 
 /**
-* Implements hook_civicrm_postInstall().
-*
-* @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
-*/
+ * Implements hook_civicrm_postInstall().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_postInstall
+ */
 function fastactionlinks_civicrm_postInstall() {
   _fastactionlinks_civix_civicrm_postInstall();
 }

@@ -1,9 +1,9 @@
 -- /*******************************************************
 -- *
--- * civicrm_fastactionlink
+-- * civicrm_fast_action_link
 -- *
 -- *******************************************************/
-CREATE TABLE `civicrm_fastactionlink` (
+CREATE TABLE `civicrm_fast_action_link` (
 
 
      `id` int unsigned NOT NULL AUTO_INCREMENT  COMMENT 'Unique FastActionLink ID',
@@ -17,5 +17,5 @@ CREATE TABLE `civicrm_fastactionlink` (
     PRIMARY KEY ( `id` )
  
  
-,          CONSTRAINT FK_civicrm_fastactionlink_uf_group_id FOREIGN KEY (`uf_group_id`) REFERENCES `civicrm_uf_group`(`id`) ON DELETE CASCADE  
+,          CONSTRAINT FK_civicrm_fast_action_link_uf_group_id FOREIGN KEY (`uf_group_id`) REFERENCES `civicrm_uf_group`(`id`) ON DELETE CASCADE  
 )  ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci  ;

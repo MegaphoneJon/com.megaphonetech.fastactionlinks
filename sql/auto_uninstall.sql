@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS `civicrm_fastactionlink`;
+DROP TABLE IF EXISTS `civicrm_fast_action_link`;
