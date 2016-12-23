@@ -1,14 +1,6 @@
 # org.takethestreets.fastactionlinks
 Speed up your CiviCRM workflows by adding custom action links to your search results.
 
-Data schema WIP:
-id
-profile_id
-action
-action_entity_id
-is_active
-weight
-dim_on_use
 
 Link to mockup for Form UI (this may be its own menu item, it may be part of the Profile screen).
 https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/share
