@@ -8,6 +8,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * @param array $params key-value pairs
    * @return CRM_Fastactionlinks_DAO_FastActionLink|NULL
    *
+   */
   public static function create($params) {
     $className = 'CRM_Fastactionlinks_DAO_FastActionLink';
     $entityName = 'FastActionLink';
@@ -20,5 +21,10 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     CRM_Utils_Hook::post($hook, $entityName, $instance->id, $instance);
 
     return $instance;
-  } */
+  }
+
+  public function getLinks() {
+    //Nothing here yet.
+  }
+
 }
