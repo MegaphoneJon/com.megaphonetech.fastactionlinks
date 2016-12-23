@@ -4,8 +4,8 @@
   <base>CRM/Fastactionlinks</base>
   <class>FastActionLink</class>
   <name>civicrm_fastactionlink</name>
-  <comment>FIXME</comment>
-  <add>4.4</add>
+  <comment></comment>
+  <add>4.6</add>
   <log>true</log>
 
   <field>
@@ -13,25 +13,74 @@
     <type>int unsigned</type>
     <required>true</required>
     <comment>Unique FastActionLink ID</comment>
-    <add>4.4</add>
+    <add>4.6</add>
   </field>
   <primaryKey>
     <name>id</name>
     <autoincrement>true</autoincrement>
   </primaryKey>
-
   <field>
-    <name>contact_id</name>
+    <name>uf_group_id</name>
+    <title>Profile ID</title>
     <type>int unsigned</type>
-    <comment>FK to Contact</comment>
-    <add>4.4</add>
+    <required>true</required>
+    <comment>Which profile this link is associated with.</comment>
+    <add>4.6</add>
+    <pseudoconstant>
+      <table>civicrm_uf_group</table>
+      <keyColumn>id</keyColumn>
+      <labelColumn>title</labelColumn>
+    </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
   </field>
   <foreignKey>
-    <name>contact_id</name>
-    <table>civicrm_contact</table>
+    <name>uf_group_id</name>
+    <table>civicrm_uf_group</table>
     <key>id</key>
-    <add>4.4</add>
+    <add>4.6</add>
     <onDelete>CASCADE</onDelete>
   </foreignKey>
-
+  <field>
+    <name>action</name>
+    <title>The action associated with this link</title>
+    <type>varchar</type>
+    <length>64</length>
+    <required>true</required>
+    <comment>e.g. addToGroup, removeFromGroup.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>action_entity_id</name>
+    <title>Action Entity ID</title>
+    <type>unsigned int</type>
+    <comment>If the action requires an entity ID, it is stored here.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>dim_on_use</name>
+    <title>Dim on Use</title>
+    <type>boolean</type>
+    <default>1</default>
+    <comment>Should this link be disabled and the corresponding search result dimmed on click?</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>is_active</name>
+    <title>Action Link Is Active</title>
+    <type>boolean</type>
+    <default>1</default>
+    <comment>Is this link currently active?  If not, do not show.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
+    <name>weight</name>
+    <title>Order</title>
+    <type>int</type>
+    <required>true</required>
+    <default>1</default>
+    <comment>Controls order in which links appear.</comment>
+    <add>4.6</add>
+  </field>
 </table>
