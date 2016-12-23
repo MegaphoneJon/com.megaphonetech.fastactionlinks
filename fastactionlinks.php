@@ -13,31 +13,14 @@ function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
  */
 function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
   if ($op == 'contact.selector.actions') {
-    $links = array();
-    $actionLinks[] = array(
-      'name' => 'Test Link 2',
-      'url' => '#',
-      'qs' => 'cid=%%id%%',
-      'title' => 'Alt Text Here',
-      'ref' => 'fast-action-link-2',
-      'class' => 'fast-action-link',
-    );
-    $actionLinks[] = array(
-      'name' => 'Test Link 1',
-      'url' => '#',
-      'qs' => 'cid=%%id%%',
-      'title' => 'Alt Text Here',
-      'ref' => 'fast-action-link-1',
-      'class' => 'fast-action-link',
-    );
-
+    $fal = new CRM_Fastactionlinks_BAO_FastActionLink;
+    $actionLinks = $fal->getFastActionLinks(1);
     foreach ($actionLinks as $actionLink) {
       array_unshift($links, $actionLink);
     }
     // Debug data.
     if ($op == 'contact.selector.actions' && ($objectId == 202)) {
       CRM_Core_Error::debug('links', $links);
-      CRM_Core_Error::debug('mask', $mask);
       CRM_Core_Error::debug('values', $values);
     }
   }
