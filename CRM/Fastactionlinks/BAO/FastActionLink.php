@@ -38,7 +38,9 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
       'is_active' => 1,
       'options' => array('sort' => "weight"),
     ));
-    $formattedLinks = $this->formatFastActionLinks($result['values']);
+    if ($result['count'] && !$result['is_error']) {
+      $formattedLinks = $this->formatFastActionLinks($result['values']);
+    }
     return $formattedLinks;
   }
 
