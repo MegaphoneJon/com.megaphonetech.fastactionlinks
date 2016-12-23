@@ -23,8 +23,19 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     return $instance;
   }
 
-  public function getLinks() {
-    //Nothing here yet.
+  /**
+   * Return an array of fast action links, filtered by profile ID.
+   * No $profileId = return links for default search
+   *
+   * @param integer $profileId
+   * @return array
+   */
+  public function getLinks($profileId) {
+    $result = civicrm_api3('FastActionLink', 'get', array(
+        'sequential' => 1,
+        'uf_group_id' => $profileId,
+    ));
+    return $result;
   }
 
 }
