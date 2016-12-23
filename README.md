@@ -8,7 +8,9 @@ https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/view/page/ad64222d5
 
 Create data for testing:
 drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=4 label="Advisory Board" hovertext="Test 1"
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2"
+drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" weight=2
+drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="Default link" hovertext="Test 3"
+drush cvapi FastActionLink.create uf_group_id=6 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4"
 
 Next question to answer:  How can I tell hook_links to only fire if the profile is applicable?  It seems like hook_buildForm could tell me.  Maybe abandon hook_links? buildForm stores it in _ufGroupID.
 It looks like _contextMenu might have the links?  See line 670 of CRM_Contact_Form_Search.
