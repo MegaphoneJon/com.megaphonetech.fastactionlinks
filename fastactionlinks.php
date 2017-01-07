@@ -13,15 +13,11 @@ function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
  */
 function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
   if ($op == 'contact.selector.actions') {
-    $fal = new CRM_Fastactionlinks_BAO_FastActionLink;
-    $actionLinks = $fal->getFastActionLinks(1);
-    foreach ($actionLinks as $actionLink) {
-      array_unshift($links, $actionLink);
-    }
+
     // Debug data.
-    if ($op == 'contact.selector.actions' && ($objectId == 202)) {
-      CRM_Core_Error::debug('links', $links);
-      CRM_Core_Error::debug('values', $values);
+    if ($op == 'contact.selector.actions' && ($objectId == 202 || $objectId == 1)) {
+//      CRM_Core_Error::debug('links', $links);
+//      CRM_Core_Error::debug('values', $values);
     }
   }
 }
@@ -32,9 +28,25 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
  */
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
+  CRM_Core_Error::debug('buildForm', $formName);
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
     CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
+    $searchViewId = $form->getVar('_ufGroupID');
+    $fal = new CRM_Fastactionlinks_BAO_FastActionLink;
+    $actionLinks = $fal->getFastActionLinks($searchViewId);
+    $contextMenu = $form->getVar('_contextMenu');
+    foreach ($actionLinks as $actionLink) {
+      array_unshift($contextMenu, $actionLink);
+    }
+    $form->setVar('_contextMenu', $contextMenu);
+//    CRM_Core_Error::debug('actionLinks', $actionLinks);
+//    CRM_Core_Error::debug('profileId', $searchViewId);
+//    CRM_Core_Error::debug('Context Menu', $form->getVar('_contextMenu'));
   }
+}
+
+function fastactionlinks_civicrm_preProcess($formName, &$form) {
+  CRM_Core_Error::debug_var('preProcess', $form);
 }
 
 /**
