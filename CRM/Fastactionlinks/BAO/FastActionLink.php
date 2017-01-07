@@ -46,7 +46,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
 
   /**
    * Takes an array of FastActionLinks from the API and formats them the way
-   * hook_civicrm_links (or hook_civicrm_buildForm) expects.
+   * hook_civicrm_buildForm (NOT hook_civicrm_links) expects.
    *
    * @param array $fastActionLinks API-formatted FastActionLinks
    * @return array Links formatted for hook_buildForm or hook_links
@@ -54,12 +54,12 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
   private function formatFastActionLinks($fastActionLinks) {
     foreach ($fastActionLinks as $k => $fastActionLink) {
       $formattedLinks[$k] = array(
-        'name' => $fastActionLink['label'],
-        'url' => '#',
-        'qs' => "action=${fastActionLink['action']}&action_entity_id=${fastActionLink['action']}&cid=%%id%%",
-        'title' => $fastActionLink['hovertext'],
-        'ref' => "fast-action-link-${fastActionLink['id']}",
+        'title' => $fastActionLink['label'],
+        'ref' => $fastActionLink['action'],
+        'href' => "#action=${fastActionLink['action']}&action_entity_id=${fastActionLink['action']}&cid=%%id%%",
+        'tab' => NULL,
         'class' => 'fast-action-link',
+        'key' => "fast-action-link-${fastActionLink['id']}",
       );
     }
     return $formattedLinks;
