@@ -47,9 +47,9 @@ Ensure they're in the correct order.
 
 *Test the "Search Views Exist" function for the Form UI, both when a search view does and doesn't exist.*
 
-getLinks()
+getFastActionLinks()
 create 4 links - 2 in profile 1, 1 in profile 2, 1 with no profile
-Assert getLinks(null) returns the 1 appropriate link
-Assert getLinks(1) returns the 2 appropriate links
-Assert getLinks(1) returns them in correct weight order
-Assert getLinks(2) returns the 1 appropriate link
+Assert getFastActionLinks(null) returns the 1 appropriate link // This is wrong.  Need to think through this!
+Assert getFastActionLinks(1) returns the 2 appropriate links
+Assert getFastActionLinks(1) returns them in correct weight order
+Assert getFastActionLinks(2) returns the 1 appropriate link
