@@ -28,7 +28,6 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
  */
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
-  CRM_Core_Error::debug('buildForm', $formName);
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
     CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
     $searchViewId = $form->getVar('_ufGroupID');
@@ -43,6 +42,9 @@ function fastactionlinks_civicrm_buildForm($formName, &$form) {
 //    CRM_Core_Error::debug('profileId', $searchViewId);
 //    CRM_Core_Error::debug('Context Menu', $form->getVar('_contextMenu'));
   }
+}
+
+function fastactionlinks_civicrm_searchColumns($objectName, &$headers, &$rows, &$selector) {
 }
 
 function fastactionlinks_civicrm_preProcess($formName, &$form) {
