@@ -5,6 +5,7 @@ CRM.$(function ($) {
     var entityId = $(this)[0].getAttribute('entityid');
     var params = {"id": falId, "entity_id": entityId};
     CRM.api3('FastActionLink', 'execute', params).done(function (result) {
+      CRM.alert(result.success_message, "", "success");
       console.log(result);
     });
     return false;

@@ -11,6 +11,7 @@ CREATE TABLE `civicrm_fast_action_link` (
      `action` varchar(64) NOT NULL   COMMENT 'The action associated with this link. E.g. addToGroup, removeFromGroup.',
      `label` varchar(32) NOT NULL   COMMENT 'This is the displayed text for the link.',
      `hovertext` varchar(255)    COMMENT 'This is the text displayed when you hover the mouse over the link.  It\'s a good place to put a description.',
+     `success_message` varchar(255)    COMMENT 'This is the text in the confirmation message when the link is clicked.',
      `action_entity_id` int unsigned    COMMENT 'If the action requires an entity ID, it is stored here.',
      `dim_on_use` tinyint   DEFAULT 1 COMMENT 'Should this link be disabled and the corresponding search result dimmed on click?',
      `is_active` tinyint   DEFAULT 1 COMMENT 'Is this link currently active?  If not, do not show.',

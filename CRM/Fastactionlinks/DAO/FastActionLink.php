@@ -79,6 +79,12 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
    */
   public $hovertext;
   /**
+   * This is the text in the confirmation message when the link is clicked.
+   *
+   * @var string
+   */
+  public $success_message;
+  /**
    * If the action requires an entity ID, it is stored here.
    *
    * @var int unsigned
@@ -177,6 +183,14 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'type' => CRM_Utils_Type::T_STRING,
           'title' => ts('Hover Text') ,
           'description' => 'This is the text displayed when you hover the mouse over the link.  It\'s a good place to put a description.',
+          'maxlength' => 255,
+          'size' => CRM_Utils_Type::HUGE,
+        ) ,
+        'success_message' => array(
+          'name' => 'success_message',
+          'type' => CRM_Utils_Type::T_STRING,
+          'title' => ts('Success Message') ,
+          'description' => 'This is the text in the confirmation message when the link is clicked.',
           'maxlength' => 255,
           'size' => CRM_Utils_Type::HUGE,
         ) ,
