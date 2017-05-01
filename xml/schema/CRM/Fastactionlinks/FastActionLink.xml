@@ -91,6 +91,14 @@
     <add>4.6</add>
   </field>
   <field>
+    <name>confirm</name>
+    <title>Confirm</title>
+    <type>boolean</type>
+    <default>0</default>
+    <comment>Pop up a confirmation box when clicking this link?</comment>
+    <add>4.6</add>
+  </field>
+  <field>
     <name>is_active</name>
     <title>Action Link Is Active</title>
     <type>boolean</type>

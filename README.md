@@ -21,10 +21,11 @@ The "execute" command works
 we can use alterContent to inject links into search results
 Support hovertext in links
 Create a working link that fires the FAL
+Post-click notifications
 
 TODO:
 Add a "confirm" dialog on search results
-Post-click notifications
+Handle post-click notifications on error
 Post-click dimming
 Email (remote) links
 The whole UI

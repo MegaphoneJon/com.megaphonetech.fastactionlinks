@@ -97,6 +97,12 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
    */
   public $dim_on_use;
   /**
+   * Pop up a confirmation box when clicking this link?
+   *
+   * @var boolean
+   */
+  public $confirm;
+  /**
    * Is this link currently active?  If not, do not show.
    *
    * @var boolean
@@ -205,6 +211,13 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'type' => CRM_Utils_Type::T_BOOLEAN,
           'title' => ts('Dim on Use') ,
           'description' => 'Should this link be disabled and the corresponding search result dimmed on click?',
+          'default' => '1',
+        ) ,
+        'confirm' => array(
+          'name' => 'confirm',
+          'type' => CRM_Utils_Type::T_BOOLEAN,
+          'title' => ts('Confirm') ,
+          'description' => 'Pop up a confirmation box when clicking this link?',
           'default' => '1',
         ) ,
         'is_active' => array(

@@ -14,6 +14,7 @@ CREATE TABLE `civicrm_fast_action_link` (
      `success_message` varchar(255)    COMMENT 'This is the text in the confirmation message when the link is clicked.',
      `action_entity_id` int unsigned    COMMENT 'If the action requires an entity ID, it is stored here.',
      `dim_on_use` tinyint   DEFAULT 1 COMMENT 'Should this link be disabled and the corresponding search result dimmed on click?',
+     `confirm` tinyint   DEFAULT 1 COMMENT 'Pop up a confirmation box when clicking this link?',
      `is_active` tinyint   DEFAULT 1 COMMENT 'Is this link currently active?  If not, do not show.',
      `weight` int NOT NULL  DEFAULT 1 COMMENT 'Controls order in which links appear.' 
 ,
