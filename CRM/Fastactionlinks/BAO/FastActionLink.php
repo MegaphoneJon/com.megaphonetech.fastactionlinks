@@ -100,11 +100,14 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     );
     try {
       $apiResult = civicrm_api3('FastActionLink', 'getsingle', $params);
-      print_r($apiResult);
     } catch (CiviCRM_API3_Exception $e) {
       $error = $e->getMessage();
       echo $error;
     }
+    $falData['entityId'] = $entityId;
+    $falData['actionEntityId'] = $apiResult['action_entity_id'];
+    print_r($falData);
+    call_user_func('CRM_Fastactionlinks_Action::' . $apiResult['action'], $falData);
   }
 
 }
