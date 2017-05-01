@@ -19,10 +19,11 @@ The entity is built
 The API is in place
 The "execute" command works
 we can use alterContent to inject links into search results
+Support hovertext in links
+Create a working link that fires the FAL
 
 TODO:
-Create a working link that fires the FAL
-Support hovertext in links
+Add a "confirm" dialog on search results
 Post-click notifications
 Post-click dimming
 Email (remote) links
