@@ -86,4 +86,25 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     return $link;
   }
 
+  /**
+   * Given an entity Id (currently contact IDs only) and a fast action link ID,
+   * perform the task that the FAL is intended to perform.
+   *
+   * @param int $entityId The ID of the entity to act on.
+   * @param int $falId The FAL we're executing.
+   * @return array $result Success/failure info; a redirect URL?
+   */
+  public static function execute($entityId, $falId) {
+    $params = array(
+      'id' => $falId,
+    );
+    try {
+      $apiResult = civicrm_api3('FastActionLink', 'getsingle', $params);
+      print_r($apiResult);
+    } catch (CiviCRM_API3_Exception $e) {
+      $error = $e->getMessage();
+      echo $error;
+    }
+  }
+
 }
