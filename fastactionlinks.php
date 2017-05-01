@@ -21,18 +21,33 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
   if (!isset($rows)) {
     return;
   }
+  // We have search results.  Get FALs, filtered by the Search View.
   $searchViewId = $object->getVar('_ufGroupID');
   $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
   $actionLinks = $fal->getFastActionLinks($searchViewId);
+  // Create links for each FAL.
   foreach ($rows as $cid => $row) {
     $newActions = "<span>";
     foreach ($actionLinks as $actionLink) {
+      $actionLink = str_replace('%%id%%', $cid, $actionLink);
       $newActions .= $actionLink;
     }
     $newActions .= str_replace("<span>", "", $row['action']);
     $actions[$cid] = $row['action'];
     $actions2[$cid] = $newActions;
     $content = str_replace($row['action'], $newActions, $content);
+  }
+}
+
+/**
+ * Implements hook_civicrm_buildForm().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
+ */
+function fastactionlinks_civicrm_buildForm($formName, &$form) {
+  //Inject fal.js.
+  if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
+    CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
   }
 }
 
