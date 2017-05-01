@@ -79,7 +79,7 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
    */
   public $hovertext;
   /**
-   * This is the text in the confirmation message when the link is clicked.
+   * This is the text in the success message when the link is clicked.
    *
    * @var string
    */
@@ -196,7 +196,7 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'name' => 'success_message',
           'type' => CRM_Utils_Type::T_STRING,
           'title' => ts('Success Message') ,
-          'description' => 'This is the text in the confirmation message when the link is clicked.',
+          'description' => 'This is the text in the success message when the link is clicked.',
           'maxlength' => 255,
           'size' => CRM_Utils_Type::HUGE,
         ) ,
@@ -218,7 +218,7 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'type' => CRM_Utils_Type::T_BOOLEAN,
           'title' => ts('Confirm') ,
           'description' => 'Pop up a confirmation box when clicking this link?',
-          'default' => '1',
+          'default' => '0',
         ) ,
         'is_active' => array(
           'name' => 'is_active',

@@ -64,7 +64,7 @@
     <title>Success Message</title>
     <type>varchar</type>
     <length>255</length>
-    <comment>This is the text in the confirmation message when the link is clicked.</comment>
+    <comment>This is the text in the success message when the link is clicked.</comment>
     <add>4.6</add>
   </field>
   <field>
