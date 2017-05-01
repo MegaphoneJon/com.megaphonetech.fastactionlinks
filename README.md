@@ -14,10 +14,26 @@ drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="
 drush cvapi FastActionLink.create uf_group_id=12 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4"
 ```
 
-Next question to answer:  How can I tell hook_links to only fire if the profile is applicable?  It seems like hook_buildForm could tell me.  Maybe abandon hook_links? buildForm stores it in _ufGroupID.
-It looks like _contextMenu might have the links?  See line 670 of CRM_Contact_Form_Search.
+DONE:
+The entity is built
+The API is in place
+The "execute" command works
+we can use alterContent to inject links into search results
 
-Maybe we can add them at hook_buildForm and re-sort them at hook_links?  Because _contextMenu doesn't include the primary links.
+TODO:
+Create a working link that fires the FAL
+Support hovertext in links
+Post-click notifications
+Post-click dimming
+Email (remote) links
+The whole UI
+More actions besides addToGroup
+A hook to define your own actions
+Revert the code to make entityTypes load dynamically
+Better documentation
+More comments?
+phpunit tests
+
 
 Tests:
 *Add to Group*
