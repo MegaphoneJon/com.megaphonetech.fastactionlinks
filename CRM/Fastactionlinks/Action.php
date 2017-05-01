@@ -12,7 +12,6 @@ class CRM_Fastactionlinks_Action {
       'contact_id' => $falData['entityId'],
       'group_id' => $falData['actionEntityId'],
     );
-    print_r($falData);
     $result = civicrm_api3('GroupContact', 'create', $params);
     return $result;
   }

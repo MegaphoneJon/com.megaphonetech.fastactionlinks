@@ -44,3 +44,29 @@ function civicrm_api3_fast_action_link_delete($params) {
 function civicrm_api3_fast_action_link_get($params) {
   return _civicrm_api3_basic_get(_civicrm_api3_get_BAO(__FUNCTION__), $params);
 }
+
+/**
+ * Metadata for execute function.
+ *
+ * @param array $params
+ */
+function _civicrm_api3_fast_action_link_execute_spec(&$params) {
+  $params['id'] = array(
+    'title' => 'id',
+    'description' => 'Unique FastActionLink ID',
+    'type' => CRM_Utils_Type::T_INT,
+    'api.required' => TRUE,
+  );
+  $params['entity_id'] = array(
+    'title' => 'Entity ID',
+    'description' => 'Entity ID to take action on (usually a contact)',
+    'type' => CRM_Utils_Type::T_INT,
+    'api.required' => TRUE,
+  );
+}
+
+function civicrm_api3_fast_action_link_execute($params) {
+  $id = $params['id'];
+  $entityId = $params['entity_id'];
+  return CRM_Fastactionlinks_BAO_FastActionLink::execute($entityId, $id);
+}
