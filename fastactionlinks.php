@@ -5,6 +5,35 @@ require_once 'fastactionlinks.civix.php';
 function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
   _fastactionlinks_civix_civicrm_entityTypes($entityTypes);
 }
+/**
+ * Hook the search results to in Inject the links.
+ * There's hook_civicrm_links which is much nicer, but it can't determine which search view is
+ * in use.  Also we'd have to make API calls for every single row, not one per search result.
+ */
+function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$object) {
+  // Only hook advanced search.
+  if ($tplName != 'CRM/Contact/Form/Search/Advanced.tpl') {
+    return;
+  }
+  // Make sure we have search results.
+  $renderer = $object->getVar('_renderer');
+  $rows = $renderer->_tpl->_tpl_vars['rows'];
+  if (!isset($rows)) {
+    return;
+  }
+  foreach ($rows as $cid => $row) {
+    $actions[$cid] = $row['action'];
+    $content = str_replace($row['action'], "hello", $content);
+  }
+  include 'kint.php';
+  d($actions);
+  $searchViewId = $object->getVar('_ufGroupID');
+  Civi::log()->info($searchViewId);
+
+  Civi::log()->info($tplName);
+  Civi::log()->info($context);
+}
+
 
 /**
  * Implements hook_civicrm_links().
@@ -13,11 +42,12 @@ function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
  */
 function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
   if ($op == 'contact.selector.actions') {
-
-    // Debug data.
-    if ($op == 'contact.selector.actions' && ($objectId == 202 || $objectId == 1)) {
-//      CRM_Core_Error::debug('links', $links);
-//      CRM_Core_Error::debug('values', $values);
+    // On search results, load all FALs into the Links array.  We'll filter them at buildForm().
+    // TODO: Differentiate between FALs that go into profiles and external FALs.
+    $fal = new CRM_Fastactionlinks_BAO_FastActionLink();
+    $actionLinks = $fal->getFastActionLinks();
+    foreach ($actionLinks as $actionLink) {
+      array_unshift($links, $actionLink);
     }
   }
 }
@@ -28,27 +58,19 @@ function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$m
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
  */
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
+  // Only trigger on search forms.
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
     CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
+    // This is a WIP - but in this hook we can look up the search view and find related FALs.
     $searchViewId = $form->getVar('_ufGroupID');
-    $fal = new CRM_Fastactionlinks_BAO_FastActionLink;
+    $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
     $actionLinks = $fal->getFastActionLinks($searchViewId);
-    $contextMenu = $form->getVar('_contextMenu');
-    foreach ($actionLinks as $actionLink) {
-      array_unshift($contextMenu, $actionLink);
-    }
-    $form->setVar('_contextMenu', $contextMenu);
-//    CRM_Core_Error::debug('actionLinks', $actionLinks);
-//    CRM_Core_Error::debug('profileId', $searchViewId);
-//    CRM_Core_Error::debug('Context Menu', $form->getVar('_contextMenu'));
+    //CRM_Core_Error::debug('actionLinks', $actionLinks);
+    //CRM_Core_Error::debug('profileId', $searchViewId);
   }
 }
 
 function fastactionlinks_civicrm_searchColumns($objectName, &$headers, &$rows, &$selector) {
-}
-
-function fastactionlinks_civicrm_preProcess($formName, &$form) {
-  CRM_Core_Error::debug_var('preProcess', $form);
 }
 
 /**
@@ -62,8 +84,6 @@ function fastactionlinks_civicrm_config(&$config) {
 
 /**
  * Implements hook_civicrm_xmlMenu().
- *
- * @param array $files
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_xmlMenu
  */
@@ -119,12 +139,6 @@ function fastactionlinks_civicrm_disable() {
 /**
  * Implements hook_civicrm_upgrade().
  *
- * @param $op string, the type of operation being performed; 'check' or 'enqueue'
- * @param $queue CRM_Queue_Queue, (for 'enqueue') the modifiable list of pending up upgrade tasks
- *
- * @return mixed
- *   Based on op. for 'check', returns array(boolean) (TRUE if upgrades are pending)
- *                for 'enqueue', returns void
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
  */
@@ -149,8 +163,6 @@ function fastactionlinks_civicrm_managed(&$entities) {
  *
  * Generate a list of case-types.
  *
- * @param array $caseTypes
- *
  * Note: This hook only runs in CiviCRM 4.4+.
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
@@ -170,7 +182,7 @@ function fastactionlinks_civicrm_caseTypes(&$caseTypes) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_caseTypes
  */
 function fastactionlinks_civicrm_angularModules(&$angularModules) {
-_fastactionlinks_civix_civicrm_angularModules($angularModules);
+  _fastactionlinks_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -185,7 +197,6 @@ function fastactionlinks_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) 
 /**
  * Functions below this ship commented out. Uncomment as required.
  *
-
 /**
  * Implements hook_civicrm_preProcess().
  *
