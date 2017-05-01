@@ -28,20 +28,25 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * FIXME: The next line is false.
    * No $profileId = return links for default search
    *
-   * @param integer $profileId
+   * @param int $profileId
    * @return array
    */
-  public function getFastActionLinks($profileId = null) {
-    $result = civicrm_api3('FastActionLink', 'get', array(
-      'sequential' => 1,
-      'uf_group_id' => $profileId,
+  public function getFastActionLinks($profileId = NULL) {
+    $params = array(
       'is_active' => 1,
       'options' => array('sort' => "weight"),
-    ));
-    if ($result['count'] && !$result['is_error']) {
-      $formattedLinks = $this->formatFastActionLinks($result['values']);
+    );
+    // Get all FALs if no profile ID is set.
+    if ($profileId) {
+      $params['uf_group_id'] = $profileId;
     }
-    return $formattedLinks;
+    $result = civicrm_api3('FastActionLink', 'get', $params);
+    if ($result['count'] && !$result['is_error']) {
+      foreach ($result['values'] as $k => $fal) {
+        $urls[$k] = $this->createFastActionLinkUrl($fal);
+      }
+    }
+    return $urls;
   }
 
   /**
@@ -54,15 +59,30 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
   private function formatFastActionLinks($fastActionLinks) {
     foreach ($fastActionLinks as $k => $fastActionLink) {
       $formattedLinks[$k] = array(
-        'title' => $fastActionLink['label'],
-        'ref' => $fastActionLink['action'],
-        'href' => "#action=${fastActionLink['action']}&action_entity_id=${fastActionLink['action']}&cid=%%id%%",
-        'tab' => NULL,
+        'name' => $fastActionLink['label'],
+        'url' => '#',
+        'qs' => "action=${fastActionLink['action']}&action_entity_id=${fastActionLink['action']}&cid=%%id%%",
+        'title' => $fastActionLink['hovertext'],
+        'ref' => "fast-action-link-${fastActionLink['id']}",
         'class' => 'fast-action-link',
-        'key' => "fast-action-link-${fastActionLink['id']}",
       );
     }
     return $formattedLinks;
+  }
+
+  /**
+   * Takes an FastActionLink from the API and returns a URL
+   * ready to insert.
+   *
+   * @param array $fal API-formatted FastActionLink
+   * @return string URLs for the FAL in question
+   */
+  private function createFastActionLinkUrl($fal) {
+    $config = CRM_Core_Config::singleton();
+    $redirect = $config->userFrameworkResourceURL . "extern/placeholder.php?u=${fal['id']}";
+    //$url = CRM_Utils_System::url();
+    $url = $redirect;
+    return $url;
   }
 
 }

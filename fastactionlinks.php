@@ -21,35 +21,24 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
   if (!isset($rows)) {
     return;
   }
+  $searchViewId = $object->getVar('_ufGroupID');
+  $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
+  $actionLinks = $fal->getFastActionLinks($searchViewId);
   foreach ($rows as $cid => $row) {
+    $newActions = "<span>";
+    $newActions .= str_replace("<span>", "", $row['action']);
+    foreach ($actionLinks as $actionLink) {
+      //TODO: Put in the injected links here.
+    }
     $actions[$cid] = $row['action'];
-    $content = str_replace($row['action'], "hello", $content);
+    $actions2[$cid] = $newActions;
+    $content = str_replace($row['action'], $newActions, $content);
   }
   include 'kint.php';
+  d($searchViewId);
   d($actions);
-  $searchViewId = $object->getVar('_ufGroupID');
-  Civi::log()->info($searchViewId);
-
-  Civi::log()->info($tplName);
-  Civi::log()->info($context);
-}
-
-
-/**
- * Implements hook_civicrm_links().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_links
- */
-function fastactionlinks_civicrm_links($op, $objectName, $objectId, &$links, &$mask, &$values) {
-  if ($op == 'contact.selector.actions') {
-    // On search results, load all FALs into the Links array.  We'll filter them at buildForm().
-    // TODO: Differentiate between FALs that go into profiles and external FALs.
-    $fal = new CRM_Fastactionlinks_BAO_FastActionLink();
-    $actionLinks = $fal->getFastActionLinks();
-    foreach ($actionLinks as $actionLink) {
-      array_unshift($links, $actionLink);
-    }
-  }
+  d($actions2);
+  d($actionLinks);
 }
 
 /**
