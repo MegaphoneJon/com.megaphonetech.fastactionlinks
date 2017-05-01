@@ -22,9 +22,9 @@ we can use alterContent to inject links into search results
 Support hovertext in links
 Create a working link that fires the FAL
 Post-click notifications
+Add a "confirm" dialog on search results
 
 TODO:
-Add a "confirm" dialog on search results
 Handle post-click notifications on error
 Post-click dimming
 Email (remote) links
