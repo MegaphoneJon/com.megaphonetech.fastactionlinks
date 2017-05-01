@@ -26,40 +26,14 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
   $actionLinks = $fal->getFastActionLinks($searchViewId);
   foreach ($rows as $cid => $row) {
     $newActions = "<span>";
-    $newActions .= str_replace("<span>", "", $row['action']);
     foreach ($actionLinks as $actionLink) {
-      //TODO: Put in the injected links here.
+      $newActions .= $actionLink;
     }
+    $newActions .= str_replace("<span>", "", $row['action']);
     $actions[$cid] = $row['action'];
     $actions2[$cid] = $newActions;
     $content = str_replace($row['action'], $newActions, $content);
   }
-  include 'kint.php';
-  d($searchViewId);
-  d($actions);
-  d($actions2);
-  d($actionLinks);
-}
-
-/**
- * Implements hook_civicrm_buildForm().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
- */
-function fastactionlinks_civicrm_buildForm($formName, &$form) {
-  // Only trigger on search forms.
-  if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
-    CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
-    // This is a WIP - but in this hook we can look up the search view and find related FALs.
-    $searchViewId = $form->getVar('_ufGroupID');
-    $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
-    $actionLinks = $fal->getFastActionLinks($searchViewId);
-    //CRM_Core_Error::debug('actionLinks', $actionLinks);
-    //CRM_Core_Error::debug('profileId', $searchViewId);
-  }
-}
-
-function fastactionlinks_civicrm_searchColumns($objectName, &$headers, &$rows, &$selector) {
 }
 
 /**

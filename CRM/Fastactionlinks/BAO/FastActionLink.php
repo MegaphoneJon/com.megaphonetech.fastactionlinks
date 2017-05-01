@@ -41,6 +41,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
       $params['uf_group_id'] = $profileId;
     }
     $result = civicrm_api3('FastActionLink', 'get', $params);
+    $urls = array();
     if ($result['count'] && !$result['is_error']) {
       foreach ($result['values'] as $k => $fal) {
         $urls[$k] = $this->createFastActionLinkUrl($fal);
@@ -75,14 +76,14 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * ready to insert.
    *
    * @param array $fal API-formatted FastActionLink
-   * @return string URLs for the FAL in question
+   * @return string $link URLs for the FAL in question
    */
   private function createFastActionLinkUrl($fal) {
     $config = CRM_Core_Config::singleton();
     $redirect = $config->userFrameworkResourceURL . "extern/placeholder.php?u=${fal['id']}";
     //$url = CRM_Utils_System::url();
-    $url = $redirect;
-    return $url;
+    $link = "<a href=$redirect class=\"action-item crm-hover-button fast-action-link fast-action-link-${fal['id']}\">${fal['label']}</a>";
+    return $link;
   }
 
 }
