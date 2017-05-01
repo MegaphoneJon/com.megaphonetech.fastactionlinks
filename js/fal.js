@@ -1,8 +1,12 @@
 CRM.$(function ($) {
-// Code goes here!
   $('.fast-action-link').click(function () {
     // Suppress the link-following behavior
-    console.log($(this));
+    var falId = $(this)[0].getAttribute('falid');
+    var entityId = $(this)[0].getAttribute('entityid');
+    var params = {"id": falId, "entityId": entityId};
+    CRM.api3('FastActionLink', 'execute', params).done(function (result) {
+      console.log(result);
+    });
     return false;
   });
 });

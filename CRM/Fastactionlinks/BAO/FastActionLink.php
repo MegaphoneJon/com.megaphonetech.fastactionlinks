@@ -72,7 +72,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
   }
 
   /**
-   * Takes an FastActionLink from the API and returns a URL
+   * Takes a FastActionLink record from the API and returns a URL
    * ready to insert.
    *
    * @param array $fal API-formatted FastActionLink
@@ -80,9 +80,9 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    */
   private function createFastActionLinkUrl($fal) {
     $config = CRM_Core_Config::singleton();
-    $redirect = $config->userFrameworkResourceURL . "extern/placeholder.php?u=${fal['id']}";
-    //$url = CRM_Utils_System::url();
-    $link = "<a href=$redirect class=\"action-item crm-hover-button fast-action-link fast-action-link-${fal['id']}\">${fal['label']}</a>";
+    $url = CRM_Utils_System::url('#');
+    $class = "action-item crm-hover-button no-popup fast-action-link fast-action-link-${fal['id']}";
+    $link = "<a href=$url title=\"${fal['hovertext']}\" class=\"$class\" entityid=\"%%id%%\" falid=\"${fal['id']}\">${fal['label']}</a>";
     return $link;
   }
 
