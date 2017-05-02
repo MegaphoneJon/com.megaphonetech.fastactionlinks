@@ -110,6 +110,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     $falData['actionEntityId'] = $apiResult['action_entity_id'];
     $result = call_user_func('CRM_Fastactionlinks_Action::' . $apiResult['action'], $falData);
     $result['success_message'] = $apiResult['success_message'];
+    $result['dim_on_use'] = $apiResult['dim_on_use'];
     return $result;
   }
 
