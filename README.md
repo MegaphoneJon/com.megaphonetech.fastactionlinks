@@ -23,13 +23,13 @@ Support hovertext in links
 Create a working link that fires the FAL
 Post-click notifications
 Add a "confirm" dialog on search results
+Post-click dimming
 
 TODO:
+More actions besides addToGroup
 Handle post-click notifications on error
-Post-click dimming
 Email (remote) links
 The whole UI
-More actions besides addToGroup
 A hook to define your own actions
 Revert the code to make entityTypes load dynamically
 Better documentation

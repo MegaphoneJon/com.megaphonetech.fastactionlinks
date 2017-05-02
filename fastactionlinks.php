@@ -48,6 +48,7 @@ function fastactionlinks_civicrm_buildForm($formName, &$form) {
   //Inject fal.js.
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
     CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
+    CRM_Core_Resources::singleton()->addStyleFile('org.takethestreets.fastactionlinks', 'css/fal.css');
   }
 }
 
