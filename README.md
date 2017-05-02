@@ -1,75 +1,24 @@
 # org.takethestreets.fastactionlinks
+
 Speed up your CiviCRM workflows by adding custom action links to your search results.
 
+With a single click, you can execute one or more actions on a contact.  For instance, add a contact to Group A, remove them from Group B, send an email explaining the change, etc.
 
-Link to mockup for Form UI (this may be its own menu item, it may be part of the Profile screen).
-https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/share
-https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/view/page/ad64222d5
+### Installation
 
-Create data for testing:
-```
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=4 label="Advisory Board" hovertext="Test 1" success_message="Contact added to Advisory Board" confirm=1
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" weight=2 success_message="Contact subscribed to Newsletter"
-drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="Default link" hovertext="Test 3" success_message="Contact added to whatever group gid 4 corresponds to."
-drush cvapi FastActionLink.create uf_group_id=12 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4" success_message="Contact added to whatever group gid 12 corresponds to."
-```
+* Download a copy of the extension from Github and unzip it into your Civi extensions directory. [include link]
+* For best results, you'll also want a copy of CiviRules installed.  Use the copy of CiviRules found on my Github [include link] for now; when my changes are merged to the main CiviRules extension, you can use that instead.
 
-DONE:
-The entity is built
-The API is in place
-The "execute" command works
-we can use alterContent to inject links into search results
-Support hovertext in links
-Create a working link that fires the FAL
-Post-click notifications
-Add a "confirm" dialog on search results
-Post-click dimming
+### Quick Start
 
-TODO:
-More actions besides addToGroup
-Handle post-click notifications on error
-Email (remote) links
-The whole UI
-A hook to define your own actions
-Revert the code to make entityTypes load dynamically
-Better documentation
-More comments?
-phpunit tests
+Here's an example that will let you easily add the "Major Donor" tag to a contact from your search results:
+* Go to CiviCRM's *Administration menu » Customize Data and Screens » Fast Action Links*.
+* Click the "Add Fast Action Link" button.
+* Create a new link with an action of "Add a Tag".  Set the label to "Tag as Major Donor".
+* Click "Save".
+* Now, whenever you use Advanced Search to search for contacts, you'll see a link next to each contact that lets you add a tag.
 
+### Configuration
 
-Tests:
-*Add to Group*
-Create a contact.
-Add an "add to group" action link via API.
-Search for a contact
-Press the link
-User is now in the group.
-Press the link again
-Nothing has changed.
-
-*Remove from Group*
-Create a contact.
-Create a group.
-Add the contact to the group.
-Add a "remove from group" action link via API.
-Search for a contact
-Press the link
-User is no longer in the group.
-Press the link again
-Nothing has changed.
-
-*Two links, correct order*
-Create two "add to group" action links.
-Ensure they're both present.
-Ensure they're in the correct order.
-
-*Two links, ensure action corresponds with the correct link*
-
-*Test the "Search Views Exist" function for the Form UI, both when a search view does and doesn't exist.*
-
-getFastActionLinks()
-create 4 links - 2 in profile 1, 1 in profile 2, 1 with no profile
-Assert getFastActionLinks(null) returns the 1 appropriate link // This is wrong.  Need to think through this!
-Assert getFastActionLinks(1) returns the 2 appropriate links
-Assert getFastActionLinks(1) returns them in correct weight order
-Assert getFastActionLinks(2) returns the 1 appropriate link
+### Credits
+This extension is a project I did with about 30 hours of my own time - no one paid me for this work!  If you benefit from this extension, please consider spending some time engaging in the CiviCRM community.  Attend a meetup, go to CiviCon, answer some new user's question on Stack Exchange.  Thanks!
