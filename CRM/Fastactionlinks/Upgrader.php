@@ -32,12 +32,22 @@ class CRM_Fastactionlinks_Upgrader extends CRM_Fastactionlinks_Upgrader_Base {
       'myWeirdFieldSetting' => array('id' => $customFieldId, 'weirdness' => 1),
     ));
   }
-
-  /**
-   * Example: Run an external SQL script when the module is uninstalled.
-   *
+  */
   public function uninstall() {
-   $this->executeSqlFile('sql/myuninstall.sql');
+    // Delete all CiviRules that use Fast Action Links.
+    if (_fastactionlinks_is_civirules_installed()) {
+      $triggerId = civicrm_api3('CiviRuleTrigger', 'getvalue', array(
+        'return' => "id",
+        'class_name' => "CRM_Fastactionlinks_Trigger_Manual",
+      ));
+      $rules = civicrm_api3('CiviRuleRule', 'get', array(
+        'trigger_id' => $triggerId,
+      ));
+      foreach ($rules['values'] as $id => $rule) {
+        // Can't delete via API - I suspect because of some MySQL commit/rollback magic
+        CRM_Civirules_BAO_Rule::deleteWithId($id);
+      }
+    }
   }
 
   /**
