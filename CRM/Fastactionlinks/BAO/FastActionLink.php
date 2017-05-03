@@ -13,7 +13,10 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     $className = 'CRM_Fastactionlinks_DAO_FastActionLink';
     $entityName = 'FastActionLink';
     $hook = empty($params['id']) ? 'create' : 'edit';
-
+    //Set the default weight
+    if (empty($params['weight'])) {
+      $params['weight'] = CRM_Utils_Weight::getDefaultWeight(CRM_Fastactionlinks_DAO_FastActionLink);
+    }
     CRM_Utils_Hook::pre($hook, $entityName, CRM_Utils_Array::value('id', $params), $params);
     $instance = new $className();
     $instance->copyValues($params);
