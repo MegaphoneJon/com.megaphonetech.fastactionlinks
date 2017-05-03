@@ -20,10 +20,15 @@ function execute(link) {
   var falId = link.getAttribute('falid');
   var entityId = link.getAttribute('entityid');
   var params = {"id": falId, "entity_id": entityId};
-  CRM.api3('FastActionLink', 'execute', params).done(function (result) {
-    CRM.alert(result.success_message, "", "success");
-    if (result.dim_on_use == 1) {
-      CRM.$(link).parents('tr').addClass('disabled');
-    }
-  });
+  CRM.api3('FastActionLink', 'execute', params)
+    .done(function (result) {
+      if (result.is_error) {
+        CRM.alert(result.error_message, "", "error");
+      } else {
+        CRM.alert(result.success_message, "", "success");
+        if (result.dim_on_use == 1) {
+          CRM.$(link).parents('tr').addClass('disabled');
+        }
+      }
+    });
 }
