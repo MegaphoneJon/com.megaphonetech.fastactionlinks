@@ -5,7 +5,7 @@ https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/view/page/ad64222d5
 Create data for testing:
 ```
 drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=4 label="Advisory Board" hovertext="Test 1" success_message="Contact added to Advisory Board" confirm=1
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" weight=2 success_message="Contact subscribed to Newsletter"
+drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" success_message="Contact subscribed to Newsletter"
 drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="Default link" hovertext="Test 3" success_message="Contact added to whatever group gid 4 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4" success_message="Contact added to whatever group gid 12 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action="civirule" action_entity_id=1 label="CivRule test" hovertext="Test 4" success_message="Civirule fired"
@@ -13,7 +13,7 @@ drush cvapi FastActionLink.create uf_group_id=12 action="civirule" action_entity
 Tag testing:
 ```
 drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addEntityTag" action_entity_id=3 label="Yes Guv" hovertext="Test 1" success_message="Contact is now tagged as Gov't Agent"
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action="removeEntityTag" action_entity_id=3 label="No Guv" hovertext="Test 2" weight=2 success_message="Contact is no longer a Gov't Agent"
+drush cvapi FastActionLink.create uf_group_id="name_and_address" action="removeEntityTag" action_entity_id=3 label="No Guv" hovertext="Test 2" success_message="Contact is no longer a Gov't Agent"
 ```
 
 
@@ -38,6 +38,7 @@ DONE:
 
 TODO:
 * The whole UI
+* Add a menu link
 * Email (remote) links
 * Better documentation
 * Update info.xml
