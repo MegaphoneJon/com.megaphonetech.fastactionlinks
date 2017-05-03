@@ -32,11 +32,13 @@ DONE:
 * More actions besides addToGroup
 * Add CiviRulesTrigger when CiviRules is detected
 * More comments
+* Roll my CiviRule trigger into my own extension, not CiviRules
+* Fix CiviRules CiviRuleTrigger.create API
+* Revert the code to make entityTypes load dynamically
 
 TODO:
-* Email (remote) links
 * The whole UI
-* Revert the code to make entityTypes load dynamically
+* Email (remote) links
 * Better documentation
 * Update info.xml
 
