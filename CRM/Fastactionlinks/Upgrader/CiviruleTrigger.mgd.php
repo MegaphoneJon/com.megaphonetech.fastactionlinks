@@ -11,8 +11,7 @@ if (_fastactionlinks_is_civirules_installed()) {
         'version' => 3,
         'name' => 'fast_action_link',
         'label' => 'Fast Action Link',
-        'op' => 'manual',
-        'class_name' => 'CRM_Civirules_Trigger_Manual',
+        'class_name' => 'CRM_Fastactionlinks_Trigger_Manual',
         'is_active' => 1
       ),
     ),

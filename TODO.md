@@ -8,7 +8,7 @@ drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGr
 drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" weight=2 success_message="Contact subscribed to Newsletter"
 drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="Default link" hovertext="Test 3" success_message="Contact added to whatever group gid 4 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4" success_message="Contact added to whatever group gid 12 corresponds to."
-drush cvapi FastActionLink.create uf_group_id=12 action="civirule" action_entity_id=8 label="CivRule test" hovertext="Test 4" success_message="Contact added to FAL CiviRule test group?"
+drush cvapi FastActionLink.create uf_group_id=12 action="civirule" action_entity_id=1 label="CivRule test" hovertext="Test 4" success_message="Civirule fired"
 ```
 Tag testing:
 ```

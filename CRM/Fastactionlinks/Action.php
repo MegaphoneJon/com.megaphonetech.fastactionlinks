@@ -72,7 +72,7 @@ class CRM_Fastactionlinks_Action {
    */
   public static function civirule($falData) {
     // TODO: FALs only support contacts for now.  Maybe later we'll change this.
-    CRM_Civirules_Trigger_Manual::process($falData['actionEntityId'], $falData['entityId'], 'Contact');
+    CRM_Fastactionlinks_Trigger_Manual::process($falData['actionEntityId'], $falData['entityId'], 'Contact');
     return $result;
   }
 
