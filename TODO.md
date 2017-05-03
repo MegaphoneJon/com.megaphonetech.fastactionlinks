@@ -17,16 +17,6 @@ drush cvapi FastActionLink.create uf_group_id="name_and_address" action="removeE
 ```
 
 
-Create a CiviRuleTrigger:
-drush cvapi CiviRuleTrigger.create sequential=1 name="fast_action_link" label="Fast Action Link" op="manual" class_name="CRM_Civirules_Trigger_Manual"
-    $result = civicrm_api3('CiviRuleTrigger', 'create', array(
-      'sequential' => 1,
-      'name' => "fast_action_link",
-      'label' => "Fast Action Link",
-      'op' => "manual",
-      'class_name' => "CRM_Civirules_Trigger_Manual",
-    ));
-
 DONE:
 * The entity is built
 * The API is in place
@@ -48,7 +38,7 @@ TODO:
 * The whole UI
 * Revert the code to make entityTypes load dynamically
 * Better documentation
-
+* Update info.xml
 
 
 Tests:
