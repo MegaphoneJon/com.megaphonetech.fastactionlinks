@@ -10,6 +10,12 @@ drush cvapi FastActionLink.create action="addToGroup" action_entity_id=4 label="
 drush cvapi FastActionLink.create uf_group_id=12 action="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4" success_message="Contact added to whatever group gid 12 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action="civirule" action_entity_id=8 label="CivRule test" hovertext="Test 4" success_message="Contact added to FAL CiviRule test group?"
 ```
+Tag testing:
+```
+drush cvapi FastActionLink.create uf_group_id="name_and_address" action="addEntityTag" action_entity_id=3 label="Yes Guv" hovertext="Test 1" success_message="Contact is now tagged as Gov't Agent"
+drush cvapi FastActionLink.create uf_group_id="name_and_address" action="removeEntityTag" action_entity_id=3 label="No Guv" hovertext="Test 2" weight=2 success_message="Contact is no longer a Gov't Agent"
+```
+
 
 Create a CiviRuleTrigger:
 drush cvapi CiviRuleTrigger.create sequential=1 name="fast_action_link" label="Fast Action Link" op="manual" class_name="CRM_Civirules_Trigger_Manual"
@@ -32,11 +38,11 @@ DONE:
 * Add a "confirm" dialog on search results
 * Post-click dimming
 * CiviRules integration
+* Handle post-click notifications on error
+* More actions besides addToGroup
 
 TODO:
 * Add CiviRulesTrigger when CiviRules is detected
-* More actions besides addToGroup
-* Handle post-click notifications on error
 * Email (remote) links
 * The whole UI
 * A hook to define your own actions
