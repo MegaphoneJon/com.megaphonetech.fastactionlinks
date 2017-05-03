@@ -35,10 +35,10 @@ DONE:
 * Roll my CiviRule trigger into my own extension, not CiviRules
 * Fix CiviRules CiviRuleTrigger.create API
 * Revert the code to make entityTypes load dynamically
+* Add a menu link
 
 TODO:
 * The whole UI
-* Add a menu link
 * Email (remote) links
 * Better documentation
 * Update info.xml
