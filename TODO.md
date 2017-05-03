@@ -40,16 +40,15 @@ DONE:
 * CiviRules integration
 * Handle post-click notifications on error
 * More actions besides addToGroup
+* Add CiviRulesTrigger when CiviRules is detected
+* More comments
 
 TODO:
-* Add CiviRulesTrigger when CiviRules is detected
 * Email (remote) links
 * The whole UI
-* A hook to define your own actions
 * Revert the code to make entityTypes load dynamically
 * Better documentation
-* More comments?
-* phpunit tests
+
 
 
 Tests:
