@@ -53,6 +53,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
   /**
    * Takes a FastActionLink record from the API and returns a URL
    * ready to insert.
+   * NOTE: substituting in the entity ID happens in the parent function.
    *
    * @param array $fal API-formatted FastActionLink
    * @return string $link URLs for the FAL in question
