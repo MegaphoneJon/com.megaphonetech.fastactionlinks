@@ -53,6 +53,51 @@ function fastactionlinks_civicrm_buildForm($formName, &$form) {
 }
 
 /**
+ * Implements hook_civicrm_tokens().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_tokens
+ */
+function fastactionlinks_civicrm_tokens(&$tokens) {
+  // TODO: Create a field in the db schema to indicate whether a token should be created.
+  // TODO: Maybe also a "basic" vs. "fancy" token.
+  try {
+    $params = array(
+      'is_active' => 1,
+    );
+    $result = civicrm_api3('FastActionLink', 'get', $params);
+  } catch (Exception $e) {
+    return $e->getMessage();
+  }
+  foreach ($result['values'] as $fal) {
+    $tokens['fal']['fal_' . $fal['id']] = $fal['label'];
+  }
+}
+
+/**
+ * Implements hook_civicrm_tokenValues().
+ *
+ * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_tokenValues
+ */
+// TODO: This doesn't remotely work.
+function fastactionlinks_civicrm_tokenValues(&$values, $cids, $job = null, $tokens = array(), $context = null) {
+  if (!empty($tokens['fal'])) {
+    $falTokens = array(
+      'fal_1' => "https://fal_1_URL",
+      'fal_1' => "https://fal_2_URL",
+      'fal_3' => "https://fal_3_URL",
+      'fal_4' => "https://fal_4_URL",
+      'fal_5' => "https://fal_5_URL",
+      'fal_6' => "https://fal_6_URL",
+      'fal_7' => "https://fal_7_URL",
+    );
+    foreach ($cids as $cid) {
+      $values[$cid] = empty($values[$cid]) ? $falTokens : $values[$cid] + $falTokens;
+    }
+  }
+  CRM_Core_Error::debug_var('cids', $cids);
+}
+
+/**
  * Used for conditionally adding a managed entity if CiviRules is installed.
  * @return boolean
  */
