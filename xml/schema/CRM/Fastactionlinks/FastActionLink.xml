@@ -42,8 +42,8 @@
     <onDelete>CASCADE</onDelete>
   </foreignKey>
   <field>
-    <name>action</name>
-    <title>Action</title>
+    <name>action_type</name>
+    <title>Action Type</title>
     <type>varchar</type>
     <length>64</length>
     <required>true</required>

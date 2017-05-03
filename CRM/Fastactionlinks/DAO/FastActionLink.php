@@ -65,7 +65,7 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
    *
    * @var string
    */
-  public $action;
+  public $action_type;
   /**
    * This is the displayed text for the link.
    *
@@ -166,10 +166,10 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
             'labelColumn' => 'title',
           )
         ) ,
-        'action' => array(
-          'name' => 'action',
+        'action_type' => array(
+          'name' => 'action_type',
           'type' => CRM_Utils_Type::T_STRING,
-          'title' => ts('Action') ,
+          'title' => ts('Action Type') ,
           'description' => 'The action associated with this link. E.g. addToGroup, removeFromGroup.',
           'required' => true,
           'maxlength' => 64,
