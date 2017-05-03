@@ -3,7 +3,11 @@
 require_once 'fastactionlinks.civix.php';
 
 function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
-  _fastactionlinks_civix_civicrm_entityTypes($entityTypes);
+  $entityTypes[] = array(
+    'name' => 'FastActionLink',
+    'class' => 'CRM_Fastactionlinks_DAO_FastActionLink',
+    'table' => 'civicrm_fast_action_link',
+  );
 }
 /**
  * Hook the search results to in Inject the links.
