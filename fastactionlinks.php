@@ -258,15 +258,15 @@ function fastactionlinks_civicrm_preProcess($formName, &$form) {
  * Implements hook_civicrm_navigationMenu().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
- *
+ */
 function fastactionlinks_civicrm_navigationMenu(&$menu) {
-  _fastactionlinks_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'org.takethestreets.fastactionlinks')),
-    'name' => 'the_page',
-    'url' => 'civicrm/the-page',
-    'permission' => 'access CiviReport,access CiviContribute',
-    'operator' => 'OR',
+  _fastactionlinks_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', array(
+    'label' => ts('Fast Action Links', array('domain' => 'org.takethestreets.fastactionlinks')),
+    'name' => 'fast_action_link',
+    'url' => 'civicrm/fastactionlink',
+    'permission' => 'access CiviCRM, administer CiviCRM',
+    'operator' => 'AND',
     'separator' => 0,
   ));
   _fastactionlinks_civix_navigationMenu($menu);
-} // */
+}
