@@ -31,7 +31,7 @@ class CRM_Fastactionlinks_Action {
     } catch (Exception $e) {
       $result['is_error'] = 1;
       $result['error_message'] = $e->getMessage();
-      // Give a more useful error when the error is "Unable to remove tags".
+      // Give a more useful error when the error is "Unable to add tags".
       if ($result['error_message'] == 'Unable to add tags') {
         $result['error_message'] = ts("Unable to add tag. Most likely this contact already has that tag.");
       }
@@ -71,8 +71,8 @@ class CRM_Fastactionlinks_Action {
    * @return array $result
    */
   public static function civirule($falData) {
+    // TODO: FALs only support contacts for now.  Maybe later we'll change this.
     CRM_Civirules_Trigger_Manual::process($falData['actionEntityId'], $falData['entityId'], 'Contact');
-    // TODO: FALs only support contacts for now.  Maybe we can change this.
     return $result;
   }
 

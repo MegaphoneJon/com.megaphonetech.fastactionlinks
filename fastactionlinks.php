@@ -52,6 +52,10 @@ function fastactionlinks_civicrm_buildForm($formName, &$form) {
   }
 }
 
+/**
+ * Used for conditionally adding a managed entity if CiviRules is installed.
+ * @return boolean
+ */
 function _fastactionlinks_is_civirules_installed() {
   $installed = false;
   try {

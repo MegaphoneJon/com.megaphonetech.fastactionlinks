@@ -1,5 +1,5 @@
 <?php
-
+// Create a CiviRuleTrigger for fast action links if CiviRules is installed.
 if (_fastactionlinks_is_civirules_installed()) {
   return array(
     0 =>

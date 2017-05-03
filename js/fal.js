@@ -16,6 +16,10 @@ CRM.$(function ($) {
   });
 });
 
+/*
+ * Make an API call to FastActionLink.execute and update search results with
+ * notifications and/or dimming the search result.
+ */
 function execute(link) {
   var falId = link.getAttribute('falid');
   var entityId = link.getAttribute('entityid');
