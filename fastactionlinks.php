@@ -45,11 +45,27 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_buildForm
  */
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
-  //Inject fal.js.
+  //Inject fal.js and fal.css when viewing search results.
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
     CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
     CRM_Core_Resources::singleton()->addStyleFile('org.takethestreets.fastactionlinks', 'css/fal.css');
   }
+}
+
+function _fastactionlinks_is_civirules_installed() {
+  $installed = false;
+  try {
+    $extensions = civicrm_api3('Extension', 'get');
+    foreach ($extensions['values'] as $ext) {
+      if ($ext['key'] == 'org.civicoop.civirules' && ($ext['status'] == 'installed' || $ext['status'] == 'disabled')) {
+        $installed = true;
+      }
+    }
+    return $installed;
+  } catch (Exception $e) {
+    return false;
+  }
+  return false;
 }
 
 /**
