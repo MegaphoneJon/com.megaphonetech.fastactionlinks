@@ -30,14 +30,23 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     $this->addRule('weight', ts('is a numeric field'), 'numeric');
 
     $this->add('checkbox', 'is_active', ts('Is this link active?'));
-    $this->addButtons(array(
-      array(
-        'type' => 'submit',
-        'name' => ts('Submit'),
-        'isDefault' => TRUE,
-      ),
-    ));
-
+    if ($this->_action == CRM_Core_Action::DELETE) {
+      $this->addButtons(array(
+        array(
+          'type' => 'submit',
+          'name' => ts('Delete'),
+          'isDefault' => TRUE,
+        ),
+      ));
+    } else {
+      $this->addButtons(array(
+        array(
+          'type' => 'submit',
+          'name' => ts('Submit'),
+          'isDefault' => TRUE,
+        ),
+      ));
+    }
     // export form elements
     $this->assign('help', $this->_help);
     $this->assign('elementNames', $this->getRenderableElementNames());
@@ -57,14 +66,7 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     }
 
     $this->_id = CRM_Utils_Request::retrieve('id', 'Positive');
-    $this->set('BAOName', 'CRM_CiviDiscount_BAO_Item');
-    // setting title for html page
-    if ($this->_action == CRM_Core_Action::UPDATE) {
-      CRM_Utils_System::setTitle(ts('Edit Fast Action Link'));
-    } else {
-      CRM_Utils_System::setTitle(ts('New Fast Action Link'));
-    }
-    parent::preProcess();
+    $this->setPageTitle('Fast Action Link');
   }
 
   public function setDefaultValues() {
@@ -76,8 +78,21 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   }
 
   public function postProcess() {
-    $values = $this->exportValues();
-    parent::postProcess();
+    // store the submitted values in an array
+    $params = $this->exportValues();
+
+    if ($this->_action == CRM_Core_Action::DELETE) {
+      if ($this->_id) {
+        CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
+        CRM_Core_Session::setStatus(ts('Fast Action Link has been deleted.'), ts('Deleted'), 'success');
+      }
+    } else {
+      if ($this->_id) {
+        $params['id'] = $this->_id;
+      }
+
+      CRM_Core_BAO_Mapping::add($params);
+    }
   }
 
   //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
