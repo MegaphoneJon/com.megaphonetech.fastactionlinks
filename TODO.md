@@ -33,10 +33,11 @@ DONE:
 * Fix CiviRules CiviRuleTrigger.create API
 * Revert the code to make entityTypes load dynamically
 * Add a menu link
+* Add pseudoconstants to the schema
+* Create a page for viewing FALs
 
 TODO:
-* Add pseudoconstants to the schema
-* The whole UI
+* Create a form for editing FALs
 * Email (remote) links
 * Better documentation
 * Update info.xml
