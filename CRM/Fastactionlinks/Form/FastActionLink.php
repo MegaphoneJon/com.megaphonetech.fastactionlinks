@@ -8,6 +8,10 @@ require_once 'CRM/Core/Form.php';
  * @see http://wiki.civicrm.org/confluence/display/CRMDOC43/QuickForm+Reference
  */
 class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
+
+  //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
+  protected $_help;
+
   public function buildQuickForm() {
 
     // add form elements
@@ -18,6 +22,13 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       $this->getColorOptions(), // list of options
       TRUE // is required
     );
+    $this->add('text', 'label', ts('Link Text'));
+    $this->add('text', 'description', ts('Description'));
+    $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+    $this->add('text', 'hovertext', ts('Hover Text'));
+    $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+    $this->add('text', 'success_message', ts('Success Message'));
+    $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
     $this->addButtons(array(
       array(
         'type' => 'submit',
@@ -27,6 +38,7 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     ));
 
     // export form elements
+    $this->assign('help', $this->_help);
     $this->assign('elementNames', $this->getRenderableElementNames());
     parent::buildQuickForm();
   }
@@ -52,6 +64,12 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       $options["#{$f}{$f}{$f}"] = ts('Grey (%1)', array(1 => $f));
     }
     return $options;
+  }
+
+  //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
+  public function addHelp($name, $id, $hlpFile = null) {
+    $this->_help[$name]['id'] = $id;
+    $this->_help[$name]['hlpFile'] = $hlpFile;
   }
 
   /**

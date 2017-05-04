@@ -5,21 +5,14 @@
 </div>
 
 {* FIELD EXAMPLE: OPTION 1 (AUTOMATIC LAYOUT) *}
-
+{debug}
 {foreach from=$elementNames item=elementName}
   <div class="crm-section">
-    <div class="label">{$form.$elementName.label}</div>
+    <div class="label">{$form.$elementName.label} {if $elementName|array_key_exists:$help}{help id=$help.$elementName.id file=$help.$elementName.hlpFile}{/if}</div>
     <div class="content">{$form.$elementName.html}</div>
     <div class="clear"></div>
   </div>
 {/foreach}
-
-{* FIELD EXAMPLE: OPTION 2 (MANUAL LAYOUT)
-
-  <div>
-    <span>{$form.favorite_color.label}</span>
-    <span>{$form.favorite_color.html}</span>
-  </div>
 
 {* FOOTER *}
 <div class="crm-submit-buttons">

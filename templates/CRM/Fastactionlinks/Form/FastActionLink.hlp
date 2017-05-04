@@ -1,0 +1,18 @@
+{htxt id='id-description-title'}
+  {ts}Description{/ts}
+{/htxt}
+{htxt id='id-description'}
+  {ts}An internal description of this link's use.{/ts}
+{/htxt}
+{htxt id='id-hovertext-title'}
+  {ts}Hover Text{/ts}
+{/htxt}
+{htxt id='id-hovertext'}
+  {ts}This text will display when a user hovers their cursor over the link.  It's a good place to put instructions to the user about when the link should be clicked, or what the link does.{/ts}
+{/htxt}
+{htxt id='id-success_message-title'}
+  {ts}Success Message{/ts}
+{/htxt}
+{htxt id='id-success_message'}
+  {ts}When your action successfully completes, this is the notification your users will see.{/ts}
+{/htxt}
