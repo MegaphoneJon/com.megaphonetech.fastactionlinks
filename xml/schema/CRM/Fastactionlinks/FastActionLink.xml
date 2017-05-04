@@ -24,12 +24,10 @@
     <title>Profile ID</title>
     <type>int unsigned</type>
     <comment>Which profile this link is associated with.  NULL indicates "default search".</comment>
-    <add>4.6</add>
     <pseudoconstant>
-      <table>civicrm_uf_group</table>
-      <keyColumn>id</keyColumn>
-      <labelColumn>title</labelColumn>
+      <callback>CRM_Fastactionlinks_PseudoConstant::searchViews</callback>
     </pseudoconstant>
+    <add>4.6</add>
     <html>
       <type>Select</type>
     </html>
@@ -48,6 +46,9 @@
     <length>64</length>
     <required>true</required>
     <comment>The action associated with this link. E.g. addToGroup, removeFromGroup.</comment>
+    <pseudoconstant>
+      <callback>CRM_Fastactionlinks_PseudoConstant::actionTypes</callback>
+    </pseudoconstant>
     <add>4.6</add>
   </field>
   <field>

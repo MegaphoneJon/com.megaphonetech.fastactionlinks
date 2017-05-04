@@ -161,10 +161,8 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
             'type' => 'Select',
           ) ,
           'pseudoconstant' => array(
-            'table' => 'civicrm_uf_group',
-            'keyColumn' => 'id',
-            'labelColumn' => 'title',
-          )
+            'callback' => 'CRM_Fastactionlinks_PseudoConstant::searchViews',
+          ),
         ) ,
         'action_type' => array(
           'name' => 'action_type',
@@ -174,6 +172,9 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'required' => true,
           'maxlength' => 64,
           'size' => CRM_Utils_Type::BIG,
+          'pseudoconstant' => array(
+            'callback' => 'CRM_Fastactionlinks_PseudoConstant::actionTypes',
+          ),
         ) ,
         'label' => array(
           'name' => 'label',
