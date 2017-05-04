@@ -73,7 +73,13 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
    */
   public $label;
   /**
-   * This is the text displayed when you hover the mouse over the link.  It's a good place to put a description.
+   * An internal description of this link.
+   *
+   * @var string
+   */
+  public $description;
+  /**
+   * This is the text displayed when you hover the mouse over the link.  It's a good place to put instructions.
    *
    * @var string
    */
@@ -185,11 +191,19 @@ class CRM_Fastactionlinks_DAO_FastActionLink extends CRM_Core_DAO {
           'maxlength' => 32,
           'size' => CRM_Utils_Type::MEDIUM,
         ) ,
+        'description' => array(
+          'name' => 'description',
+          'type' => CRM_Utils_Type::T_STRING,
+          'title' => ts('Description') ,
+          'description' => 'An internal description of this link.',
+          'maxlength' => 255,
+          'size' => CRM_Utils_Type::HUGE,
+        ) ,
         'hovertext' => array(
           'name' => 'hovertext',
           'type' => CRM_Utils_Type::T_STRING,
           'title' => ts('Hover Text') ,
-          'description' => 'This is the text displayed when you hover the mouse over the link.  It\'s a good place to put a description.',
+          'description' => 'This is the text displayed when you hover the mouse over the link.  It\'s a good place to put instructions.',
           'maxlength' => 255,
           'size' => CRM_Utils_Type::HUGE,
         ) ,

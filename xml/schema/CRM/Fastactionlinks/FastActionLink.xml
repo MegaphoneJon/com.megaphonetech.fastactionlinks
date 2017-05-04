@@ -61,6 +61,14 @@
     <add>4.6</add>
   </field>
   <field>
+    <name>description</name>
+    <title>Description<title>
+    <type>varchar</type>
+    <length>255</length>
+    <comment>An internal description of this link.</comment>
+    <add>4.6</add>
+  </field>
+  <field>
     <name>success_message</name>
     <title>Success Message</title>
     <type>varchar</type>
@@ -73,7 +81,7 @@
     <title>Hover Text</title>
     <type>varchar</type>
     <length>255</length>
-    <comment>This is the text displayed when you hover the mouse over the link.  It's a good place to put a description.</comment>
+    <comment>This is the text displayed when you hover the mouse over the link.  It's a good place to put instructions.</comment>
     <add>4.6</add>
   </field>
   <field>
