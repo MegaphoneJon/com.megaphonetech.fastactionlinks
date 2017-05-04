@@ -108,7 +108,7 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
    */
   public function browse() {
     $resourceManager = CRM_Core_Resources::singleton();
-    if (!empty($_GET['new']) && $resourceManager->ajaxPopupsEnabled) {
+    if (!empty(CRM_Utils_Request::retrieve('new', 'String')) && $resourceManager->ajaxPopupsEnabled) {
       $resourceManager->addScriptFile('civicrm', 'js/crm.addNew.js', 999, 'html-header');
     }
 
