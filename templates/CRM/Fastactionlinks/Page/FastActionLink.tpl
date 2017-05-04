@@ -3,7 +3,6 @@
   {include file=""}
 {else}
   {if $fastActionLink}
-    {debug}
     <div id="fal_page">
       {strip}
         {* handle enable/disable actions*}
@@ -12,8 +11,8 @@
           <thead>
             <tr>
               <th>{ts}Link Label{/ts}</th>
-              <th>{ts}Profile{/ts}</th>
-              <th>{ts}Field Type{/ts}</th>
+              <th>{ts}Search Profile{/ts}</th>
+              <th>{ts}Action Type{/ts}</th>
               <th>{ts}Order{/ts}</th>
               <th>{ts}Dim on Use{/ts}</th>
               <th>{ts}Confirm{/ts}</th>
@@ -26,12 +25,12 @@
               <tr id="FastActionLink-{$row.id}" class="crm-entity {cycle values="odd-row,even-row"}{if NOT $row.is_active} disabled{/if}">
                 <td class="crm-editable crmf-label" data-field="label">{$row.label}</td>
                 <td>{$row.uf_group_id}</td>
-                <td>{$row.html_type}</td>
+                <td>{$row.action_type}</td>
                 <td class="nowrap">{$row.weight}</td>
                 <td class="crm-editable" data-type="boolean" data-field="dim_on_use">{if $row.dim_on_use eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
                 <td class="crm-editable" data-type="boolean" data-field="confirm">{if $row.confirm eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
                 <td>{if $row.is_active eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
-                <td>{$row.actionLinks|replace:'xx':$row.id}</td>
+                <td>{$row.action|replace:'xx':$row.id}</td>
               </tr>
             {/foreach}
           </tbody>

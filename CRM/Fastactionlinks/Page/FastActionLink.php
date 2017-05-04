@@ -114,6 +114,9 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
     while ($fastActionLinkBAO->fetch()) {
       $fastActionLink[$fastActionLinkBAO->id] = array();
       CRM_Core_DAO::storeValues($fastActionLinkBAO, $fastActionLink[$fastActionLinkBAO->id]);
+      //Pseudoconstant substitutions
+      $fastActionLink[$fastActionLinkBAO->id]['uf_group_id'] = CRM_Core_PseudoConstant::getLabel('CRM_Fastactionlinks_BAO_FastActionLink', 'uf_group_id', $fastActionLinkBAO->uf_group_id);
+      $fastActionLink[$fastActionLinkBAO->id]['action_type'] = CRM_Core_PseudoConstant::getLabel('CRM_Fastactionlinks_BAO_FastActionLink', 'action_type', $fastActionLinkBAO->action_type);
       $action = array_sum(array_keys(self::actionLinks()));
       if ($fastActionLinkBAO->is_active) {
         $action -= CRM_Core_Action::ENABLE;
@@ -122,17 +125,13 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
       }
 
       $fastActionLink[$fastActionLinkBAO->id]['order'] = $fastActionLink[$fastActionLinkBAO->id]['weight'];
-//      $customField[$customFieldBAO->id]['action'] = CRM_Core_Action::formLink(self::actionLinks(), $action, array(
-//                'id' => $customFieldBAO->id,
-//                'gid' => $this->_gid,
+//      $fastActionLink[$fastActionLinkBAO->id]['action'] = CRM_Core_Action::formLink(self::actionLinks(), $action, array(
+//                'id' => $fastActionLinkBAO->id,
 //                      ), ts('more'), FALSE, 'customField.row.actions', 'CustomField', $customFieldBAO->id
 //      );
     }
-
     $returnURL = CRM_Utils_System::url('civicrm/fastactionlink', "reset=1&action=browse");
     CRM_Utils_Weight::addOrder($fastActionLink, 'CRM_Fastactionlinks_DAO_FastActionLink', 'id', $returnURL);
-    $searchViews = CRM_Fastactionlinks_SelectValues::searchViews();
-    CRM_Core_Error::debug_var('searchViews', $searchViews);
     $this->assign('fastActionLink', $fastActionLink);
   }
 
