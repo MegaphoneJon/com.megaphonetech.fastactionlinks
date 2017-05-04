@@ -13,37 +13,45 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   protected $_help;
 
   public function buildQuickForm() {
-
-    // add form elements and help text.
-    $this->add('text', 'label', ts('Link Text'), NULL, TRUE);
-
-    $this->add('text', 'description', ts('Description'), array('size' => 60));
-    $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-    $this->add('text', 'hovertext', ts('Hover Text'), array('size' => 60));
-    $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-    $this->add('text', 'success_message', ts('Success Message'), array('size' => 60));
-    $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-    $this->add('text', 'weight', ts('Order'), CRM_Core_DAO::getAttribute('CRM_Fastactionlinks_DAO_FastActionLink', 'weight'), TRUE);
-    $this->addRule('weight', ts('is a numeric field'), 'numeric');
-
-    $this->add('checkbox', 'is_active', ts('Is this link active?'));
     if ($this->_action == CRM_Core_Action::DELETE) {
       $this->addButtons(array(
         array(
           'type' => 'submit',
-          'name' => ts('Delete'),
+          'name' => ts('Delete Link'),
           'isDefault' => TRUE,
         ),
+        array(
+          'type' => 'cancel',
+          'name' => ts('Cancel'),
+        )
       ));
     } else {
+      // add form elements and help text.
+      $this->add('text', 'label', ts('Link Text'), NULL, TRUE);
+
+      $this->add('text', 'description', ts('Description'), array('size' => 60));
+      $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
+      $this->add('text', 'hovertext', ts('Hover Text'), array('size' => 60));
+      $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
+      $this->add('text', 'success_message', ts('Success Message'), array('size' => 60));
+      $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
+      $this->add('text', 'weight', ts('Order'), CRM_Core_DAO::getAttribute('CRM_Fastactionlinks_DAO_FastActionLink', 'weight'), TRUE);
+      $this->addRule('weight', ts('is a numeric field'), 'numeric');
+
+      $this->add('checkbox', 'is_active', ts('Is this link active?'));
+
       $this->addButtons(array(
         array(
           'type' => 'submit',
           'name' => ts('Submit'),
           'isDefault' => TRUE,
+        ),
+        array(
+          'type' => 'cancel',
+          'name' => ts('Cancel'),
         ),
       ));
     }
