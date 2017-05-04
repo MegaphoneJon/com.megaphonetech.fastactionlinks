@@ -73,9 +73,6 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
     }
     $action = CRM_Utils_Request::retrieve('action', 'String', $this, FALSE, 'browse');
 
-    // Example: Assign a variable for use in a template
-    $this->assign('currentTime', date('Y-m-d H:i:s'));
-
     // assign vars to templates
     $this->assign('action', $action);
 
