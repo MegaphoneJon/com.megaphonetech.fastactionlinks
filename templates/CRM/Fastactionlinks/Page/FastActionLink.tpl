@@ -50,8 +50,3 @@
     {crmButton p='civicrm/fastactionlink/add' q="reset=1&action=add" id="newFastActionLink"  class="action-item" icon="plus-circle"}{ts}Add Fast Action Link{/ts}{/crmButton}
   </div>
 {/if}
-
-
-{* Example: Display a translated string -- which happens to include a variable *}
-<p>{ts 1=$action}The current action is %1.{/ts}</p>
-
