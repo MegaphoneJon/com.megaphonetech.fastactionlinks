@@ -32,8 +32,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
       self::$_actionLinks = array(
         CRM_Core_Action::UPDATE => array(
           'name' => ts('Edit'),
-//          'url' => 'civicrm/admin/custom/group/field/update',
-//          'qs' => 'action=update&reset=1&gid=%%gid%%&id=%%id%%',
+          'url' => 'civicrm/fastactionlink/update',
+          'qs' => 'action=update&reset=1&id=%%id%%',
           'title' => ts('Edit'),
         ),
         CRM_Core_Action::DISABLE => array(
@@ -48,8 +48,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
         ),
         CRM_Core_Action::DELETE => array(
           'name' => ts('Delete'),
-          //'url' => 'civicrm/admin/custom/group/field',
-          //'qs' => 'action=delete&reset=1&gid=%%gid%%&id=%%id%%',
+          'url' => 'civicrm/fastactionlink',
+          'qs' => 'action=delete&reset=1&id=%%id%%',
           'title' => ts('Delete'),
         ),
       );
@@ -80,11 +80,9 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
     $this->assign('action', $action);
 
     // what action to take ?
-    if ($action & (CRM_Core_Action::UPDATE | CRM_Core_Action::ADD)) {
+    if ($action & (CRM_Core_Action::UPDATE | CRM_Core_Action::ADD | CRM_Core_Action::DELETE)) {
       // no browse for edit/update/view
 //      $this->edit($action);
-    } elseif ($action & CRM_Core_Action::PREVIEW) {
-//    $this->preview($id);
     } else {
       $this->browse();
     }
@@ -125,10 +123,9 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
       }
 
       $fastActionLink[$fastActionLinkBAO->id]['order'] = $fastActionLink[$fastActionLinkBAO->id]['weight'];
-//      $fastActionLink[$fastActionLinkBAO->id]['action'] = CRM_Core_Action::formLink(self::actionLinks(), $action, array(
-//                'id' => $fastActionLinkBAO->id,
-//                      ), ts('more'), FALSE, 'customField.row.actions', 'CustomField', $customFieldBAO->id
-//      );
+      $fastActionLink[$fastActionLinkBAO->id]['action'] = CRM_Core_Action::formLink(self::actionLinks(), $action, array(
+          'id' => $fastActionLinkBAO->id,
+        ), ts('more'), FALSE, 'fastActionLink.row.actions', 'FastActionLink', $fastActionLinkBAO->id);
     }
     $returnURL = CRM_Utils_System::url('civicrm/fastactionlink', "reset=1&action=browse");
     CRM_Utils_Weight::addOrder($fastActionLink, 'CRM_Fastactionlinks_DAO_FastActionLink', 'id', $returnURL);
@@ -139,17 +136,7 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
 
 
 
-//
-//  /**
-//   * Edit custom data.
-//   *
-//   * editing would involved modifying existing fields + adding data to new fields.
-//   *
-//   * @param string $action
-//   *   The action to be invoked.
-//   *
-//   * @return void
-//   */
+
 //  public function edit($action) {
 //    // create a simple controller for editing custom dataCRM/Custom/Page/Field.php
 //    $controller = new CRM_Core_Controller_Simple('CRM_Custom_Form_Field', ts('Custom Field'), $action);
@@ -163,53 +150,3 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
 //    $controller->process();
 //    $controller->run();
 //  }
-//
-//  /**
-//   * Run the page.
-//   *
-//   * This method is called after the page is created. It checks for the
-//   * type of action and executes that action.
-//   *
-//   * @return void
-//   */
-//  public function run() {
-//
-//
-//
-//    if ($action & CRM_Core_Action::DELETE) {
-//
-//      $session = CRM_Core_Session::singleton();
-//      $session->pushUserContext(CRM_Utils_System::url('civicrm/admin/custom/group/field', 'reset=1&action=browse&gid=' . $this->_gid));
-//      $controller = new CRM_Core_Controller_Simple('CRM_Custom_Form_DeleteField', "Delete Custom Field", '');
-//      $id = CRM_Utils_Request::retrieve('id', 'Positive', $this, FALSE, 0
-//      );
-//      $controller->set('id', $id);
-//      $controller->setEmbedded(TRUE);
-//      $controller->process();
-//      $controller->run();
-//      $fieldValues = array('custom_group_id' => $this->_gid);
-//      $wt = CRM_Utils_Weight::delWeight('CRM_Core_DAO_CustomField', $id, $fieldValues);
-//    }
-//
-//  }
-//
-//  /**
-//   * Preview custom field.
-//   *
-//   * @param int $id
-//   *   Custom field id.
-//   *
-//   * @return void
-//   */
-//  public function preview($id) {
-//    $controller = new CRM_Core_Controller_Simple('CRM_Custom_Form_Preview', ts('Preview Custom Data'), CRM_Core_Action::PREVIEW);
-//    $session = CRM_Core_Session::singleton();
-//    $session->pushUserContext(CRM_Utils_System::url('civicrm/admin/custom/group/field', 'reset=1&action=browse&gid=' . $this->_gid));
-//    $controller->set('fieldId', $id);
-//    $controller->set('groupId', $this->_gid);
-//    $controller->setEmbedded(TRUE);
-//    $controller->process();
-//    $controller->run();
-//  }
-//
-//}

@@ -1,6 +1,6 @@
-{if $action eq 1 or $action eq 2 or $action eq 4}
+{if $action eq 1 or $action eq 2 or $action eq 8}
   FIXME: Create a form for editing FALs.
-  {include file=""}
+  {include file="CRM/Custom/Form/Field.tpl"}
 {else}
   {if $fastActionLink}
     <div id="fal_page">
