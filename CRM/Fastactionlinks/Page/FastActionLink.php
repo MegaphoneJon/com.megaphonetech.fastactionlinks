@@ -32,7 +32,7 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
       self::$_actionLinks = array(
         CRM_Core_Action::UPDATE => array(
           'name' => ts('Edit'),
-          'url' => 'civicrm/fastactionlink/update',
+          'url' => 'civicrm/fastactionlink',
           'qs' => 'action=update&reset=1&id=%%id%%',
           'title' => ts('Edit'),
         ),
@@ -81,8 +81,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
 
     // what action to take ?
     if ($action & (CRM_Core_Action::UPDATE | CRM_Core_Action::ADD | CRM_Core_Action::DELETE)) {
-      // no browse for edit/update/view
-//      $this->edit($action);
+      // No browse for edit/update/delete.
+      $this->edit($action);
     } else {
       $this->browse();
     }
@@ -90,6 +90,18 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
 
 
     parent::run();
+  }
+
+  public function edit($action) {
+    // create a simple controller for editing custom dataCRM/Custom/Page/Field.php
+    $controller = new CRM_Core_Controller_Simple('CRM_Fastactionlinks_Form_FastActionLink', ts('Fast Action Link'), $action);
+
+    // set the userContext stack
+    $session = CRM_Core_Session::singleton();
+    $session->pushUserContext(CRM_Utils_System::url('civicrm/fastactionlink', 'reset=1&action=browse'));
+    $controller->setEmbedded(TRUE);
+    $controller->process();
+    $controller->run();
   }
 
   /**
@@ -133,20 +145,3 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
   }
 
 }
-
-
-
-
-//  public function edit($action) {
-//    // create a simple controller for editing custom dataCRM/Custom/Page/Field.php
-//    $controller = new CRM_Core_Controller_Simple('CRM_Custom_Form_Field', ts('Custom Field'), $action);
-//
-//    // set the userContext stack
-//    $session = CRM_Core_Session::singleton();
-//    $session->pushUserContext(CRM_Utils_System::url('civicrm/admin/custom/group/field', 'reset=1&action=browse&gid=' . $this->_gid));
-//
-//    $controller->set('gid', $this->_gid);
-//    $controller->setEmbedded(TRUE);
-//    $controller->process();
-//    $controller->run();
-//  }
