@@ -14,21 +14,22 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
 
   public function buildQuickForm() {
 
-    // add form elements
-    $this->add(
-      'select', // field type
-      'favorite_color', // field name
-      'Favorite Color', // field label
-      $this->getColorOptions(), // list of options
-      TRUE // is required
-    );
-    $this->add('text', 'label', ts('Link Text'));
-    $this->add('text', 'description', ts('Description'));
+    // add form elements and help text.
+    $this->add('text', 'label', ts('Link Text'), NULL, TRUE);
+
+    $this->add('text', 'description', ts('Description'), array('size' => 60));
     $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-    $this->add('text', 'hovertext', ts('Hover Text'));
+
+    $this->add('text', 'hovertext', ts('Hover Text'), array('size' => 60));
     $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-    $this->add('text', 'success_message', ts('Success Message'));
+
+    $this->add('text', 'success_message', ts('Success Message'), array('size' => 60));
     $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
+    $this->add('text', 'weight', ts('Order'), CRM_Core_DAO::getAttribute('CRM_Fastactionlinks_DAO_FastActionLink', 'weight'), TRUE);
+    $this->addRule('weight', ts('is a numeric field'), 'numeric');
+
+    $this->add('checkbox', 'is_active', ts('Is this link active?'));
     $this->addButtons(array(
       array(
         'type' => 'submit',
@@ -43,27 +44,40 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     parent::buildQuickForm();
   }
 
-  public function postProcess() {
-    $values = $this->exportValues();
-    $options = $this->getColorOptions();
-    CRM_Core_Session::setStatus(ts('You picked color "%1"', array(
-      1 => $options[$values['favorite_color']]
-    )));
-    parent::postProcess();
+  /* Set variables up before form is built.
+   *
+   *
+   * @return void
+   * @throws CRM_Core_Exception
+   */
+  public function preProcess() {
+    // Check permission for action.
+    if (!CRM_Core_Permission::check('administer CiviCRM')) {
+      throw new CRM_Core_Exception('You do not have permission to access this page.');
+    }
+
+    $this->_id = CRM_Utils_Request::retrieve('id', 'Positive');
+    $this->set('BAOName', 'CRM_CiviDiscount_BAO_Item');
+    // setting title for html page
+    if ($this->_action == CRM_Core_Action::UPDATE) {
+      CRM_Utils_System::setTitle(ts('Edit Fast Action Link'));
+    } else {
+      CRM_Utils_System::setTitle(ts('New Fast Action Link'));
+    }
+    parent::preProcess();
   }
 
-  public function getColorOptions() {
-    $options = array(
-      '' => ts('- select -'),
-      '#f00' => ts('Red'),
-      '#0f0' => ts('Green'),
-      '#00f' => ts('Blue'),
-      '#f0f' => ts('Purple'),
-    );
-    foreach (array('1','2','3','4','5','6','7','8','9','a','b','c','d','e') as $f) {
-      $options["#{$f}{$f}{$f}"] = ts('Grey (%1)', array(1 => $f));
+  public function setDefaultValues() {
+    if ($this->_id) {
+      $params = array('id' => $this->_id);
+      CRM_Core_DAO::commonRetrieve('CRM_Fastactionlinks_DAO_FastActionLink', $params, $defaults);
+      return $defaults;
     }
-    return $options;
+  }
+
+  public function postProcess() {
+    $values = $this->exportValues();
+    parent::postProcess();
   }
 
   //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
