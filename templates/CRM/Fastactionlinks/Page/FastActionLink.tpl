@@ -12,9 +12,9 @@
               <th>{ts}Link Label{/ts}</th>
               <th>{ts}Search View{/ts}</th>
               <th>{ts}Action{/ts}</th>
-              <th>{ts}Order{/ts}</th>
               <th>{ts}Dim on Use{/ts}</th>
               <th>{ts}Confirm{/ts}</th>
+              <th>{ts}Order{/ts}</th>
               <th>{ts}Enabled{/ts}</th>
               <th></th>
             </tr>
@@ -25,9 +25,9 @@
                 <td class="crm-editable crmf-label" data-field="label">{$row.label}</td>
                 <td class="crm-editable crmf-uf_group_id" data-type='select'>{$row.uf_group_id}</td>
                 <td>{$row.action_type}</td>
-                <td class="nowrap">{$row.weight}</td>
                 <td class="crm-editable" data-type="boolean" data-field="dim_on_use">{if $row.dim_on_use eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
                 <td class="crm-editable" data-type="boolean" data-field="confirm">{if $row.confirm eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
+                <td class="nowrap">{$row.weight}</td>
                 <td>{if $row.is_active eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
                 <td>{$row.action|replace:'xx':$row.id}</td>
               </tr>
