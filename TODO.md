@@ -38,10 +38,11 @@ DONE:
 
 TODO:
 * Create a form for editing FALs
-* Email (remote) links
+ * Finish the variable entityRef
+* Fix the weight bug
 * Better documentation
 * Update info.xml
-
+* Email (remote) links
 
 Tests:
 
