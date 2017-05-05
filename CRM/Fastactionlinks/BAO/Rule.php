@@ -31,4 +31,15 @@ class CRM_Fastactionlinks_BAO_Rule extends CRM_Civirules_DAO_Rule {
     return $triggerObject;
   }
 
+  /**
+   * Returns the trigger ID of the Fast Action Link trigger.
+   */
+  public static function getTriggerId() {
+    $result = civicrm_api3('CiviRuleTrigger', 'getvalue', array(
+      'return' => "id",
+      'name' => "fast_action_link",
+    ));
+    return $result;
+  }
+
 }

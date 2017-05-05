@@ -6,7 +6,7 @@
 class CRM_Fastactionlinks_PseudoConstant {
 
   public static function actionTypes() {
-    $actions = CRM_Fastactionlinks_Action::getActions();
+    $actions = CRM_Fastactionlinks_Action::getActionLabels();
     return $actions;
   }
 

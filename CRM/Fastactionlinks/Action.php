@@ -15,12 +15,12 @@ class CRM_Fastactionlinks_Action {
    * @param type $action
    * @return string
    */
-  public static function getEntityName($action) {
+  public static function getAction($action) {
     self::actions();
-    return self::$_actions[$action]['entityName'];
+    return self::$_actions[$action];
   }
 
-  public static function getActions() {
+  public static function getActionLabels() {
     self::actions();
     $actions = array();
     foreach (self::$_actions as $key => $value) {
@@ -31,25 +31,32 @@ class CRM_Fastactionlinks_Action {
 
   public static function actions() {
     if (!(self::$_actions)) {
+      // Get the CiviRuleTrigger id for the Fast Action Link trigger.
+      $triggerId = CRM_Fastactionlinks_BAO_Rule::getTriggerId();
       self::$_actions = array(
         'addToGroup' => array(
           'label' => ts('Add to Group'),
           'entityName' => 'Group',
+          'entityLabel' => 'Group',
           'functionName' => 'CRM_Fastactionlinks_Action::addToGroup',
         ),
         'addEntityTag' => array(
           'label' => ts('Add a Tag'),
           'entityName' => 'Tag',
+          'entityLabel' => 'Tag',
           'functionName' => 'CRM_Fastactionlinks_Action::addEntityTag',
         ),
         'removeEntityTag' => array(
           'label' => ts('Remove a Tag'),
           'entityName' => 'Tag',
+          'entityLabel' => 'Tag',
           'functionName' => 'CRM_Fastactionlinks_Action::removeEntityTag',
         ),
         'civirule' => array(
           'label' => ts('Trigger a CiviRule'),
           'entityName' => 'CiviRuleRule',
+          'entityLabel' => 'CiviRule',
+          'apiParams' => array('trigger_id' => $triggerId),
           'functionName' => 'CRM_Fastactionlinks_Action::civirule',
         ),
       );

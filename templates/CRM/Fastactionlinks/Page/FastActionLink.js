@@ -15,18 +15,22 @@ CRM.$(function ($) {
 function displayActionEntity() {
   action_type = CRM.$('#action_type').val();
   params = {'action': action_type};
-  entity = CRM.api3('FastActionLink', 'getactionentity', params)
+  entity = CRM.api3('FastActionLink', 'getaction', params)
     .done(function (result) {
+      console.log(result);
       if (result.is_error) {
         CRM.$('#action_entity_id').parent().parent().hide();
       } else {
-        CRM.$("label[for='action_entity_id']").html("Select a " + result.result);
+        entityLabel = ts("Select a") + " " + ts(result.entityLabel);
+        CRM.$("label[for='action_entity_id']").html(entityLabel);
         CRM.$('#action_entity_id').val("");
 
         CRM.$('#action_entity_id').crmEntityRef({
-          entity: result.result,
+          entity: result.entityName,
+          placeholder: entityLabel,
           create: false,
-          select: {'minimumInputLength': 0},
+          select: {'minimumInputLength': 0, 'width': 'resolve'},
+          api: {params: result.apiParams},
         });
         CRM.$('#action_entity_id').parent().parent().show();
       }
