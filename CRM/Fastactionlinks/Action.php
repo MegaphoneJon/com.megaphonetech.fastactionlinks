@@ -3,6 +3,60 @@
 class CRM_Fastactionlinks_Action {
 
   /**
+   * An array of all the actions available.
+   *
+   * @var array
+   */
+  static $_actions;
+
+  /**
+   * Get the entity name that an action connects to.
+   *
+   * @param type $action
+   * @return string
+   */
+  public static function getEntityName($action) {
+    self::actions();
+    return self::$_actions[$action]['entityName'];
+  }
+
+  public static function getActions() {
+    self::actions();
+    $actions = array();
+    foreach (self::$_actions as $key => $value) {
+      $actions[$key] = $value['label'];
+    }
+    return $actions;
+  }
+
+  public static function actions() {
+    if (!(self::$_actions)) {
+      self::$_actions = array(
+        'addToGroup' => array(
+          'label' => ts('Add to Group'),
+          'entityName' => 'Group',
+          'functionName' => 'CRM_Fastactionlinks_Action::addToGroup',
+        ),
+        'addEntityTag' => array(
+          'label' => ts('Add a Tag'),
+          'entityName' => 'Tag',
+          'functionName' => 'CRM_Fastactionlinks_Action::addEntityTag',
+        ),
+        'removeEntityTag' => array(
+          'label' => ts('Remove a Tag'),
+          'entityName' => 'Tag',
+          'functionName' => 'CRM_Fastactionlinks_Action::removeEntityTag',
+        ),
+        'civirule' => array(
+          'label' => ts('Trigger a CiviRule'),
+          'entityName' => 'Civirule',
+          'functionName' => 'CRM_Fastactionlinks_Action::civirule',
+        ),
+      );
+    }
+  }
+
+  /**
    * Add the user with cid of "entityId" to group with gid of "actionEntityId"
    * @param array $falData has elements entityId and actionEntityId
    * @return array $result

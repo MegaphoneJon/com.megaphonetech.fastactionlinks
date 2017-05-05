@@ -6,12 +6,8 @@
 class CRM_Fastactionlinks_PseudoConstant {
 
   public static function actionTypes() {
-    return array(
-      'addToGroup' => ts('Add to Group'),
-      'addEntityTag' => ts('Add a Tag'),
-      'removeEntityTag' => ts('Remove a Tag'),
-      'civirule' => ts('Trigger a CiviRule'),
-    );
+    $actions = CRM_Fastactionlinks_Action::getActions();
+    return $actions;
   }
 
   public static function searchViews() {

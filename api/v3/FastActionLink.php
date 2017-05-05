@@ -70,3 +70,13 @@ function civicrm_api3_fast_action_link_execute($params) {
   $entityId = $params['entity_id'];
   return CRM_Fastactionlinks_BAO_FastActionLink::execute($entityId, $id);
 }
+
+function _civicrm_api3_fast_action_link_getactionentity_spec(&$spec) {
+  $spec['action']['api.required'] = 1;
+}
+
+function civicrm_api3_fast_action_link_getactionentity($params) {
+  $action = $params['action'];
+  return CRM_Fastactionlinks_Action::getEntityName($action);
+  ;
+}
