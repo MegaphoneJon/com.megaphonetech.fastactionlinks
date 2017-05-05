@@ -58,6 +58,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
   }
 
   public function run() {
+    // This script handles the different entities an action might have.
+    CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'templates/CRM/Fastactionlinks/Page/FastActionLink.js');
     // Example: Set the page-title dynamically; alternatively, declare a static title in xml/Menu/*.xml
     CRM_Utils_System::setTitle(ts('Fast Action Links'));
 
