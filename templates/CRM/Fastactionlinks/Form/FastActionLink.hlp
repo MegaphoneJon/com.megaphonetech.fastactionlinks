@@ -1,3 +1,4 @@
+{capture assign=advancedSearchURL}{crmURL p='civicrm/contact/search/advanced' q="reset=1"}{/capture}
 {htxt id='id-description-title'}
   {ts}Description{/ts}
 {/htxt}
@@ -15,4 +16,17 @@
 {/htxt}
 {htxt id='id-success_message'}
   {ts}When your action successfully completes, this is the notification your users will see.{/ts}
+{/htxt}
+{htxt id='id-action_type-title'}
+  {ts}Action{/ts}
+{/htxt}
+{htxt id='id-action_type'}
+  {ts}When your link is clicked, it will perform this action.{/ts}
+{/htxt}
+
+{htxt id='id-uf_group_id-title'}
+  {ts}Show on Search View{/ts}
+{/htxt}
+{htxt id='id-uf_group_id'}
+  {ts 1=$advancedSearchURL}To use this link, go to <a href="%1">Advanced Search</a> and select this profile from "Views for Display Contacts".{/ts}
 {/htxt}
