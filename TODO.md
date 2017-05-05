@@ -1,16 +1,12 @@
-Link to mockup for Form UI (this may be its own menu item, it may be part of the Profile screen).
-https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/share
-https://app.moqups.com/badlysocialized@gmail.com/iYCkozdkVv/view/page/ad64222d5
-
 Create data for testing:
 ```
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action_type="addToGroup" action_entity_id=4 label="Advisory Board" hovertext="Test 1" success_message="Contact added to Advisory Board" confirm=1
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action_type="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" success_message="Contact subscribed to Newsletter"
+drush cvapi FastActionLink.create uf_group_id="1" action_type="addToGroup" action_entity_id=4 label="Advisory Board" hovertext="Test 1" success_message="Contact added to Advisory Board" confirm=1
+drush cvapi FastActionLink.create uf_group_id="1" action_type="addToGroup" action_entity_id=2 label="Newsletter" hovertext="Test 2" success_message="Contact subscribed to Newsletter"
 drush cvapi FastActionLink.create action_type="addToGroup" action_entity_id=4 label="Default link" hovertext="Test 3" success_message="Contact added to whatever group gid 4 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action_type="addToGroup" action_entity_id=4 label="Profile 6 Link" hovertext="Test 4" success_message="Contact added to whatever group gid 12 corresponds to."
 drush cvapi FastActionLink.create uf_group_id=12 action_type="civirule" action_entity_id=1 label="CivRule test" hovertext="Test 4" success_message="Civirule fired"
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action_type="addEntityTag" action_entity_id=3 label="Yes Guv" hovertext="Test 1" success_message="Contact is now tagged as Gov't Agent"
-drush cvapi FastActionLink.create uf_group_id="name_and_address" action_type="removeEntityTag" action_entity_id=3 label="No Guv" hovertext="Test 2" success_message="Contact is no longer a Gov't Agent"
+drush cvapi FastActionLink.create uf_group_id="2" action_type="addEntityTag" action_entity_id=3 label="Yes Guv" hovertext="Test 1" success_message="Contact is now tagged as Gov't Agent"
+drush cvapi FastActionLink.create uf_group_id="2" action_type="removeEntityTag" action_entity_id=3 label="No Guv" hovertext="Test 2" success_message="Contact is no longer a Gov't Agent"
 ```
 
 
@@ -40,6 +36,9 @@ TODO:
 * Create a form for editing FALs
  * Finish the variable entityRef
 * Fix the weight bug
+* Fix this bug when Advanced Searching with no profile:
+Notice: Undefined index: hovertext in CRM_Fastactionlinks_BAO_FastActionLink->createFastActionLinkUrl() (line 85 of /home/jon/local/civicrm-buildkit/build/dmaster/sites/all/modules/civicrm/tools/extensions/org.takethestreets.fastactionlinks/CRM/Fastactionlinks/BAO/FastActionLink.php).
+* Fix all links showing on Advanced Search with no Search View selected.
 * Better documentation
 * Update info.xml
 * Email (remote) links
