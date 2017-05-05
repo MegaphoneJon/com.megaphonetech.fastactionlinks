@@ -39,10 +39,10 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       $this->add('text', 'description', ts('Description'), array('size' => 60));
       $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->addSelect('uf_group_id', array('label' => 'Show on Search View'));
+      $this->addSelect('uf_group_id', array('label' => 'Search View'));
       $this->addHelp('uf_group_id', 'id-uf_group_id', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->addSelect('action_type');
+      $this->addSelect('action_type', array('label' => 'Action'));
       $this->addHelp('action_type', 'id-action_type', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
       $this->add('text', 'action_entity_id', ts('Select a FIXME:entity'));

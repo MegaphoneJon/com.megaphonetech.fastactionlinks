@@ -10,7 +10,7 @@
           <thead>
             <tr>
               <th>{ts}Link Label{/ts}</th>
-              <th>{ts}Search Profile{/ts}</th>
+              <th>{ts}Search View{/ts}</th>
               <th>{ts}Action{/ts}</th>
               <th>{ts}Order{/ts}</th>
               <th>{ts}Dim on Use{/ts}</th>
