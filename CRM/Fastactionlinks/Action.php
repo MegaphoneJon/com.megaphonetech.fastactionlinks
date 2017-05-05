@@ -49,7 +49,7 @@ class CRM_Fastactionlinks_Action {
         ),
         'civirule' => array(
           'label' => ts('Trigger a CiviRule'),
-          'entityName' => 'Civirule',
+          'entityName' => 'CiviRuleRule',
           'functionName' => 'CRM_Fastactionlinks_Action::civirule',
         ),
       );

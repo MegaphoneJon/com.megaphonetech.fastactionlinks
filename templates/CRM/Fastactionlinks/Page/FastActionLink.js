@@ -21,6 +21,13 @@ function displayActionEntity() {
         CRM.$('#action_entity_id').parent().parent().hide();
       } else {
         CRM.$("label[for='action_entity_id']").html("Select a " + result.result);
+        CRM.$('#action_entity_id').val("");
+
+        CRM.$('#action_entity_id').crmEntityRef({
+          entity: result.result,
+          create: false,
+          select: {'minimumInputLength': 0},
+        });
         CRM.$('#action_entity_id').parent().parent().show();
       }
 
