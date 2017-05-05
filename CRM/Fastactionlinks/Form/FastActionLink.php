@@ -12,6 +12,13 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
   protected $_help;
 
+  /**
+   * Explicitly declare the entity api name.
+   */
+  public function getDefaultEntity() {
+    return 'FastActionLink';
+  }
+
   public function buildQuickForm() {
     if ($this->_action == CRM_Core_Action::DELETE) {
       $this->addButtons(array(
@@ -32,10 +39,10 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       $this->add('text', 'description', ts('Description'), array('size' => 60));
       $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('text', 'uf_group_id', ts('Show on Search View'));
+      $this->addSelect('uf_group_id', array('label' => 'Show on Search View'));
       $this->addHelp('uf_group_id', 'id-uf_group_id', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('text', 'action_type', ts('Action'));
+      $this->addSelect('action_type');
       $this->addHelp('action_type', 'id-action_type', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
       $this->add('text', 'action_entity_id', ts('Select a FIXME:entity'));
@@ -90,7 +97,11 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   }
 
   public function setDefaultValues() {
+    $defaults['weight'] = CRM_Utils_Weight::getDefaultWeight('CRM_Fastactionlinks_DAO_FastActionLink');
+    CRM_Core_Error::debug_var('postweight', $defaults['weight']);
+
     if ($this->_id) {
+      CRM_Core_Error::debug_var('1', 'hi');
       $params = array('id' => $this->_id);
       CRM_Core_DAO::commonRetrieve('CRM_Fastactionlinks_DAO_FastActionLink', $params, $defaults);
       return $defaults;
