@@ -82,7 +82,8 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     $class = "action-item crm-hover-button no-popup fast-action-link fast-action-link-$falId";
     //Add a confirmation link class if we need it.
     $class .= $fal['confirm'] ? " fast-action-link-confirm" : "";
-    $link = "<a href=$url title=\"${fal['hovertext']}\" class=\"$class\" entityid=\"%%id%%\" falid=\"$falId\">${fal['label']}</a>";
+    $hovertext = isset($fal['hovertext']) ? $fal['hovertext'] : '';
+    $link = "<a href=$url title=\"$hovertext\" class=\"$class\" entityid=\"%%id%%\" falid=\"$falId\">${fal['label']}</a>";
     return $link;
   }
 

@@ -32,12 +32,11 @@ DONE:
 * Add pseudoconstants to the schema
 * Create a page for viewing FALs
 * Create a form for editing FALs
+* Fix all links showing on Advanced Search with no Search View selected.
+* Fix undefined index on hovertext bug
 
 TODO:
-* Fix the weight bug
-* Fix this bug when Advanced Searching with no profile:
-Notice: Undefined index: hovertext in CRM_Fastactionlinks_BAO_FastActionLink->createFastActionLinkUrl() (line 85 of /home/jon/local/civicrm-buildkit/build/dmaster/sites/all/modules/civicrm/tools/extensions/org.takethestreets.fastactionlinks/CRM/Fastactionlinks/BAO/FastActionLink.php).
-* Fix all links showing on Advanced Search with no Search View selected.
+* Fix the weight bug/is_active
 * Better documentation
 * Update info.xml
 * Email (remote) links

@@ -19,14 +19,14 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
   if ($tplName != 'CRM/Contact/Form/Search/Advanced.tpl') {
     return;
   }
-  // Make sure we have search results.
+  // Make sure we have search results and that this is a search view.
+  $searchViewId = $object->getVar('_ufGroupID');
   $renderer = $object->getVar('_renderer');
   $rows = $renderer->_tpl->_tpl_vars['rows'];
-  if (!isset($rows)) {
+  if (!isset($rows) || empty($searchViewId)) {
     return;
   }
-  // We have search results.  Get FALs, filtered by the Search View.
-  $searchViewId = $object->getVar('_ufGroupID');
+  // We have search results and a search view.  Get FALs.
   $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
   $actionLinks = $fal->getFastActionLinks($searchViewId);
   // Create links for each FAL.

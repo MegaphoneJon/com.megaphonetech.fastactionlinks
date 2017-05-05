@@ -17,7 +17,6 @@ function displayActionEntity() {
   params = {'action': action_type};
   entity = CRM.api3('FastActionLink', 'getaction', params)
     .done(function (result) {
-      console.log(result);
       if (result.is_error) {
         CRM.$('#action_entity_id').parent().parent().hide();
       } else {
