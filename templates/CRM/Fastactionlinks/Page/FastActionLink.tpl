@@ -11,7 +11,7 @@
             <tr>
               <th>{ts}Link Label{/ts}</th>
               <th>{ts}Search Profile{/ts}</th>
-              <th>{ts}Action Type{/ts}</th>
+              <th>{ts}Action{/ts}</th>
               <th>{ts}Order{/ts}</th>
               <th>{ts}Dim on Use{/ts}</th>
               <th>{ts}Confirm{/ts}</th>
@@ -23,7 +23,7 @@
             {foreach from=$fastActionLink item=row}
               <tr id="FastActionLink-{$row.id}" class="crm-entity {cycle values="odd-row,even-row"}{if NOT $row.is_active} disabled{/if}">
                 <td class="crm-editable crmf-label" data-field="label">{$row.label}</td>
-                <td>{$row.uf_group_id}</td>
+                <td class="crm-editable crmf-uf_group_id" data-type='select'>{$row.uf_group_id}</td>
                 <td>{$row.action_type}</td>
                 <td class="nowrap">{$row.weight}</td>
                 <td class="crm-editable" data-type="boolean" data-field="dim_on_use">{if $row.dim_on_use eq 1} {ts}Yes{/ts} {else} {ts}No{/ts} {/if}</td>
