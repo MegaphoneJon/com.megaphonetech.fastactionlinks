@@ -45,7 +45,7 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
 
       $this->addButtons(array(
         array(
-          'type' => 'submit',
+          'type' => 'done',
           'name' => ts('Submit'),
           'isDefault' => TRUE,
         ),
@@ -73,8 +73,12 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       throw new CRM_Core_Exception('You do not have permission to access this page.');
     }
 
-    $this->_id = CRM_Utils_Request::retrieve('id', 'Positive');
+    $this->_id = CRM_Utils_Request::retrieve('id', 'Positive', $this, FALSE);
     $this->setPageTitle('Fast Action Link');
+
+    $session = CRM_Core_Session::singleton();
+    $url = CRM_Utils_System::url('civicrm/fastactionlink', 'reset=1');
+    $session->pushUserContext($url);
   }
 
   public function setDefaultValues() {
@@ -88,7 +92,6 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   public function postProcess() {
     // store the submitted values in an array
     $params = $this->exportValues();
-
     if ($this->_action == CRM_Core_Action::DELETE) {
       if ($this->_id) {
         CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
@@ -98,8 +101,8 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       if ($this->_id) {
         $params['id'] = $this->_id;
       }
-
-      CRM_Core_BAO_Mapping::add($params);
+      CRM_Fastactionlinks_BAO_FastActionLink::create($params);
+      CRM_Core_Session::setStatus(ts('Fast Action Link has been saved.'), ts('Saved'), 'success');
     }
   }
 
