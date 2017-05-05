@@ -244,7 +244,7 @@ function fastactionlinks_civicrm_navigationMenu(&$menu) {
   _fastactionlinks_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', array(
     'label' => ts('Fast Action Links', array('domain' => 'org.takethestreets.fastactionlinks')),
     'name' => 'fast_action_link',
-    'url' => 'civicrm/fastactionlink',
+    'url' => 'civicrm/fastactionlink?reset=1',
     'permission' => 'access CiviCRM, administer CiviCRM',
     'operator' => 'AND',
     'separator' => 0,
