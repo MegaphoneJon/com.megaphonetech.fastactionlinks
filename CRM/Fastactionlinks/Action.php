@@ -32,7 +32,9 @@ class CRM_Fastactionlinks_Action {
   public static function actions() {
     if (!(self::$_actions)) {
       // Get the CiviRuleTrigger id for the Fast Action Link trigger.
-      $triggerId = CRM_Fastactionlinks_BAO_Rule::getTriggerId();
+      if (CRM_Fastactionlinks_Util::isCivirulesInstalled()) {
+        $triggerId = CRM_Fastactionlinks_BAO_Rule::getTriggerId();
+      }
       self::$_actions = array(
         'addToGroup' => array(
           'label' => ts('Add to Group'),
