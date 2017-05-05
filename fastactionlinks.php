@@ -102,26 +102,6 @@ function fastactionlinks_civicrm_tokenValues(&$values, $cids, $job = null, $toke
 }
 
 /**
- * Used for conditionally adding a managed entity if CiviRules is installed.
- * @return boolean
- */
-function _fastactionlinks_is_civirules_installed() {
-  $installed = false;
-  try {
-    $extensions = civicrm_api3('Extension', 'get');
-    foreach ($extensions['values'] as $ext) {
-      if ($ext['key'] == 'org.civicoop.civirules' && ($ext['status'] == 'installed' || $ext['status'] == 'disabled')) {
-        $installed = true;
-      }
-    }
-    return $installed;
-  } catch (Exception $e) {
-    return false;
-  }
-  return false;
-}
-
-/**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config

@@ -35,7 +35,7 @@ class CRM_Fastactionlinks_Upgrader extends CRM_Fastactionlinks_Upgrader_Base {
   */
   public function uninstall() {
     // Delete all CiviRules that use Fast Action Links.
-    if (_fastactionlinks_is_civirules_installed()) {
+    if (CRM_Fastactionlinks_Util::isCivirulesInstalled()) {
       $triggerId = civicrm_api3('CiviRuleTrigger', 'getvalue', array(
         'return' => "id",
         'class_name' => "CRM_Fastactionlinks_Trigger_Manual",
