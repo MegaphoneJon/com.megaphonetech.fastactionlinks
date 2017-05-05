@@ -12,11 +12,11 @@ if (CRM_Fastactionlinks_Util::isCivirulesInstalled()) {
         'name' => 'fast_action_link',
         'label' => 'Fast Action Link',
         'class_name' => 'CRM_Fastactionlinks_Trigger_Manual',
-        'is_active' => 1
+        'is_active' => 1,
       ),
     ),
   );
 }
- else {
+else {
   return array();
 }

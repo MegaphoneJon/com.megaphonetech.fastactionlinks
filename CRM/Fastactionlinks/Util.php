@@ -13,19 +13,20 @@
  */
 class CRM_Fastactionlinks_Util {
   public static function isCivirulesInstalled() {
-    $installed = false;
+    $installed = TRUE;
     try {
       $extensions = civicrm_api3('Extension', 'get');
       foreach ($extensions['values'] as $ext) {
         if ($ext['key'] == 'org.civicoop.civirules' && ($ext['status'] == 'installed' || $ext['status'] == 'disabled')) {
-          $installed = true;
+          $installed = TRUE;
         }
       }
       return $installed;
-    } catch (Exception $e) {
-      return false;
     }
-    return false;
+    catch (Exception $e) {
+      return FALSE;
+    }
+    return FALSE;
   }
 
 }

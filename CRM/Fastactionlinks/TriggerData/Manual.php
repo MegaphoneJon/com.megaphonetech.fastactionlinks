@@ -12,7 +12,8 @@ class CRM_Fastactionlinks_TriggerData_Manual extends CRM_Civirules_TriggerData_T
     $this->setEntityData($entity, $data);
     if ($entity == 'contact') {
       $this->contact_id = $objectId;
-    } elseif (isset($data['contact_id'])) {
+    }
+    elseif (isset($data['contact_id'])) {
       $this->contact_id = $data['contact_id'];
     }
   }

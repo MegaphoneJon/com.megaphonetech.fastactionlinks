@@ -1,8 +1,8 @@
 <?php
-/*
+
+/**
  * Pseudoconstant lookups for the FastActionLink entity.
  */
-
 class CRM_Fastactionlinks_PseudoConstant {
 
   public static function actionTypes() {

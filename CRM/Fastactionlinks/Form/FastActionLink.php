@@ -30,9 +30,10 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
         array(
           'type' => 'cancel',
           'name' => ts('Cancel'),
-        )
+        ),
       ));
-    } else {
+    }
+    else {
       // add form elements and help text.
       $this->add('text', 'label', ts('Link Text'), NULL, TRUE);
 
@@ -76,8 +77,8 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     parent::buildQuickForm();
   }
 
-  /* Set variables up before form is built.
-   *
+  /**
+   * Set variables up before form is built.
    *
    * @return void
    * @throws CRM_Core_Exception
@@ -116,7 +117,8 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
         CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
         CRM_Core_Session::setStatus(ts('Fast Action Link has been deleted.'), ts('Deleted'), 'success');
       }
-    } else {
+    }
+    else {
       if ($this->_id) {
         $params['id'] = $this->_id;
       }
@@ -125,8 +127,11 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     }
   }
 
-  //FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
-  public function addHelp($name, $id, $hlpFile = null) {
+  /**
+   * FIXME: PR submitted to move this to CRM_Core_Form.  Remove this when that's merged.
+   *
+   */
+  public function addHelp($name, $id, $hlpFile = NULL) {
     $this->_help[$name]['id'] = $id;
     $this->_help[$name]['hlpFile'] = $hlpFile;
   }
@@ -151,4 +156,5 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     }
     return $elementNames;
   }
+
 }

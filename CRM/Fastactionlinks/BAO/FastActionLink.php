@@ -26,7 +26,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     return $instance;
   }
 
-    /**
+  /**
    * Delete the fast action link.
    *
    * @param int $id Fast action link id.
@@ -34,7 +34,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * @return bool
    */
   public static function del($id) {
-    $falDAO = new CRM_Fastactionlinks_DAO_FastActionLink;
+    $falDAO = new CRM_Fastactionlinks_DAO_FastActionLink();
     $falDAO->id = $id;
     $result = $falDAO->delete();
 

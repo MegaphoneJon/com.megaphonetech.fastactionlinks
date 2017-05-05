@@ -19,14 +19,14 @@ function _fastactionlinks_civix_civicrm_config(&$config = NULL) {
   $extRoot = dirname(__FILE__) . DIRECTORY_SEPARATOR;
   $extDir = $extRoot . 'templates';
 
-  if ( is_array( $template->template_dir ) ) {
-      array_unshift( $template->template_dir, $extDir );
+  if (is_array($template->template_dir)) {
+    array_unshift($template->template_dir, $extDir);
   }
   else {
-      $template->template_dir = array( $extDir, $template->template_dir );
+    $template->template_dir = array($extDir, $template->template_dir);
   }
 
-  $include_path = $extRoot . PATH_SEPARATOR . get_include_path( );
+  $include_path = $extRoot . PATH_SEPARATOR . get_include_path();
   set_include_path($include_path);
 }
 
@@ -131,7 +131,7 @@ function _fastactionlinks_civix_civicrm_upgrade($op, CRM_Queue_Queue $queue = NU
  * @return CRM_Fastactionlinks_Upgrader
  */
 function _fastactionlinks_civix_upgrader() {
-  if (!file_exists(__DIR__.'/CRM/Fastactionlinks/Upgrader.php')) {
+  if (!file_exists(__DIR__ . '/CRM/Fastactionlinks/Upgrader.php')) {
     return NULL;
   }
   else {
@@ -167,7 +167,8 @@ function _fastactionlinks_civix_find_files($dir, $pattern) {
       while (FALSE !== ($entry = readdir($dh))) {
         $path = $subdir . DIRECTORY_SEPARATOR . $entry;
         if ($entry{0} == '.') {
-        } elseif (is_dir($path)) {
+        }
+        elseif (is_dir($path)) {
           $todos[] = $path;
         }
       }
@@ -287,7 +288,7 @@ function _fastactionlinks_civix_insert_navigation_menu(&$menu, $path, $item) {
   }
   else {
     // Find an recurse into the next level down
-    $found = false;
+    $found = FALSE;
     $path = explode('/', $path);
     $first = array_shift($path);
     foreach ($menu as $key => &$entry) {
@@ -319,7 +320,7 @@ function _fastactionlinks_civix_fixNavigationMenu(&$nodes) {
     if ($key === 'navID') {
       $maxNavID = max($maxNavID, $item);
     }
-    });
+  });
   _fastactionlinks_civix_fixNavigationMenuItems($nodes, $maxNavID, NULL);
 }
 
@@ -356,7 +357,7 @@ function _fastactionlinks_civix_civicrm_alterSettingsFolders(&$metaDataFolders =
   $configured = TRUE;
 
   $settingsDir = __DIR__ . DIRECTORY_SEPARATOR . 'settings';
-  if(is_dir($settingsDir) && !in_array($settingsDir, $metaDataFolders)) {
+  if (is_dir($settingsDir) && !in_array($settingsDir, $metaDataFolders)) {
     $metaDataFolders[] = $settingsDir;
   }
 }

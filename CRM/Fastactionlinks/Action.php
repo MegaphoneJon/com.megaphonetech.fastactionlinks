@@ -12,8 +12,8 @@ class CRM_Fastactionlinks_Action {
   /**
    * Get the entity name that an action connects to.
    *
-   * @param type $action
-   * @return string
+   * @param string $action
+   * @return array
    */
   public static function getAction($action) {
     self::actions();
@@ -91,7 +91,8 @@ class CRM_Fastactionlinks_Action {
     );
     try {
       $result = civicrm_api3('EntityTag', 'create', $params);
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       $result['is_error'] = 1;
       $result['error_message'] = $e->getMessage();
       // Give a more useful error when the error is "Unable to add tags".
@@ -117,7 +118,8 @@ class CRM_Fastactionlinks_Action {
     );
     try {
       $result = civicrm_api3('EntityTag', 'delete', $params);
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       $result['is_error'] = 1;
       $result['error_message'] = $e->getMessage();
       // Give a more useful error when the error is "Unable to remove tags".

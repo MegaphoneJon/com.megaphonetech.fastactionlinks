@@ -82,11 +82,10 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
     if ($action & (CRM_Core_Action::UPDATE | CRM_Core_Action::ADD | CRM_Core_Action::DELETE)) {
       // No browse for edit/update/delete.
       $this->edit($action);
-    } else {
+    }
+    else {
       $this->browse();
     }
-
-
 
     parent::run();
   }
@@ -129,7 +128,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
       $action = array_sum(array_keys(self::actionLinks()));
       if ($fastActionLinkBAO->is_active) {
         $action -= CRM_Core_Action::ENABLE;
-      } else {
+      }
+      else {
         $action -= CRM_Core_Action::DISABLE;
       }
 

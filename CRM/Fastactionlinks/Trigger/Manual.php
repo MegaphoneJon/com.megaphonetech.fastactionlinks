@@ -13,8 +13,8 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
 
     $trigger = new CRM_Civirules_BAO_Trigger();
     $trigger->id = $this->triggerId;
-    if (!$trigger->find(true)) {
-      throw new Exception('Civirules: could not find trigger with ID: '.$this->triggerId);
+    if (!$trigger->find(TRUE)) {
+      throw new Exception('Civirules: could not find trigger with ID: ' . $this->triggerId);
     }
   }
 
@@ -39,10 +39,9 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
   /**
    * Process a manual trigger.
    *
-   * @param string $op
-   * @param string $objectName
+   * @param int $ruleId
    * @param int $objectId
-   * @param object $objectRef
+   * @param string $objectName
    * @access public
    * @static
    */
@@ -71,7 +70,8 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
   protected function getEntityData($objectId, $objectName) {
     try {
       $result = civicrm_api3($objectName, 'getsingle', array('id' => $objectId));
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       $message = "Error on {file} (Line {line})\r\n\r\n{exception_message}";
       $context = array();
       $context['line'] = $e->getLine();
@@ -104,7 +104,8 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
     $data = array();
     if (is_object($objectRef)) {
       CRM_Core_DAO::storeValues($objectRef, $data);
-    } elseif (is_array($objectRef)) {
+    }
+    elseif (is_array($objectRef)) {
       $data = $objectRef;
     }
 

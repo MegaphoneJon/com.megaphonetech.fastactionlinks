@@ -21,8 +21,8 @@ class CRM_Fastactionlinks_BAO_Rule extends CRM_Civirules_DAO_Rule {
     $params[1] = array($ruleId, 'Integer');
     $dao = CRM_Core_DAO::executeQuery($sql, $params);
     if ($dao->fetch()) {
-      $triggerObject = CRM_Civirules_BAO_Trigger::getTriggerObjectByClassName($dao->class_name, false);
-      if ($triggerObject !== false) {
+      $triggerObject = CRM_Civirules_BAO_Trigger::getTriggerObjectByClassName($dao->class_name, FALSE);
+      if ($triggerObject !== FALSE) {
         $triggerObject->setTriggerId($dao->trigger_id);
         $triggerObject->setRuleId($dao->rule_id);
         $triggerObject->setTriggerParams($dao->trigger_params);

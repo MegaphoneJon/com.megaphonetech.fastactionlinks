@@ -32,7 +32,7 @@ class CRM_Fastactionlinks_Upgrader extends CRM_Fastactionlinks_Upgrader_Base {
       'myWeirdFieldSetting' => array('id' => $customFieldId, 'weirdness' => 1),
     ));
   }
-  */
+   */
   public function uninstall() {
     // Delete all CiviRules that use Fast Action Links.
     if (CRM_Fastactionlinks_Util::isCivirulesInstalled()) {
