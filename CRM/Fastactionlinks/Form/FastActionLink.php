@@ -54,6 +54,12 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       $this->add('text', 'success_message', ts('Success Message'), array('size' => 60));
       $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
+      $this->add('checkbox', 'dim_on_use', ts('Dim on Use?'));
+      $this->addHelp('dim_on_use', 'id-dim_on_use', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
+      $this->add('checkbox', 'confirm', ts('Confirmation box?'));
+      $this->addHelp('confirm', 'id-confirm', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+
       $this->add('text', 'weight', ts('Order'), CRM_Core_DAO::getAttribute('CRM_Fastactionlinks_DAO_FastActionLink', 'weight'), TRUE);
       $this->addRule('weight', ts('is a numeric field'), 'numeric');
 

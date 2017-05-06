@@ -34,11 +34,11 @@ DONE:
 * Create a form for editing FALs
 * Fix all links showing on Advanced Search with no Search View selected.
 * Fix undefined index on hovertext bug
+* Update info.xml
 
 TODO:
 * Fix the weight bug/is_active
 * Better documentation
-* Update info.xml
 * Email (remote) links
 
 Tests:

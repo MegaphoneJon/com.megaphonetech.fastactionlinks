@@ -31,3 +31,17 @@
 {htxt id='id-uf_group_id'}
   {ts 1=$advancedSearchURL}To use this link, go to <a href="%1">Advanced Search</a> and select this profile from "Views for Display Contacts".{/ts}<br /><br />{ts 1=$profileURL}If this field displays "None Found", please go to the <a href="%1">Profiles</a> page, select "Settings" next to a profile, click the "Search Views" checkbox and press "Save".{/ts}
 {/htxt}
+
+{htxt id='id-dim_on_use-title'}
+  {ts}Dim on Use{/ts}
+{/htxt}
+{htxt id='id-dim_on_use'}
+  {ts}If this box is checked, the contact will be visually dimmed when the link is clicked.  This helps to indicate which contacts have had an action taken.{/ts}
+{/htxt}
+
+{htxt id='id-confirm-title'}
+  {ts}Confirmation Dialog Box{/ts}
+{/htxt}
+{htxt id='id-confirm'}
+  {ts}If this box is checked, a confirmation dialog box will ask the user to confirm their choice.{/ts}
+{/htxt}
