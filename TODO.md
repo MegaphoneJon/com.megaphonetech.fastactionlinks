@@ -35,9 +35,11 @@ DONE:
 * Fix all links showing on Advanced Search with no Search View selected.
 * Fix undefined index on hovertext bug
 * Update info.xml
+* Fix defaultValues not working
+* Fix the weight bug (on update)
 
 TODO:
-* Fix the weight bug/is_active
+* Fix checkboxes being set to "no" being ignored in the form
 * Better documentation
 * Email (remote) links
 
