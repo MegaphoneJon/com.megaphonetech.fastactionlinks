@@ -105,19 +105,20 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
 
   public function setDefaultValues() {
     $defaults['weight'] = CRM_Utils_Weight::getDefaultWeight('CRM_Fastactionlinks_DAO_FastActionLink');
-    CRM_Core_Error::debug_var('postweight', $defaults['weight']);
-
+    $defaults['is_active'] = 1;
+    $defaults['dim_on_use'] = 1;
     if ($this->_id) {
       CRM_Core_Error::debug_var('1', 'hi');
       $params = array('id' => $this->_id);
       CRM_Core_DAO::commonRetrieve('CRM_Fastactionlinks_DAO_FastActionLink', $params, $defaults);
-      return $defaults;
     }
+    return $defaults;
   }
 
   public function postProcess() {
     // store the submitted values in an array
     $params = $this->exportValues();
+    CRM_Core_Error::debug_var('params', $params);
     if ($this->_action == CRM_Core_Action::DELETE) {
       if ($this->_id) {
         CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
