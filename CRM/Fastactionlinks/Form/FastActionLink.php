@@ -119,6 +119,7 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     $params = $this->exportValues();
     if ($this->_action == CRM_Core_Action::DELETE) {
       if ($this->_id) {
+        CRM_Utils_Weight::delWeight('CRM_Fastactionlinks_DAO_FastActionLink', $this->_id);
         CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
         CRM_Core_Session::setStatus(ts('Fast Action Link has been deleted.'), ts('Deleted'), 'success');
       }
