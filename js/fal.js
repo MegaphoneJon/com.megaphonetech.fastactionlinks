@@ -29,6 +29,9 @@ function execute(link) {
       if (result.is_error) {
         CRM.alert(result.error_message, "", "error");
       } else {
+        if (!result.success_message) {
+          result.success_message = "Action was successful";
+        }
         CRM.alert(result.success_message, "", "success");
         if (result.dim_on_use == 1) {
           CRM.$(link).parents('tr').addClass('disabled');
