@@ -1,4 +1,4 @@
-# org.takethestreets.fastactionlinks
+# Fast Action Links extension for CiviCRM
 
 Speed up your CiviCRM workflows by adding custom action links to your search results.
 
