@@ -14,7 +14,7 @@ CRM.$(function ($) {
  */
 function displayActionEntity() {
   action_type = CRM.$('#action_type').val();
-  params = {'action': action_type};
+  params = {'action_type': action_type};
   entity = CRM.api3('FastActionLink', 'getaction', params)
     .done(function (result) {
       if (result.is_error) {

@@ -73,9 +73,8 @@ class CRM_Fastactionlinks_Page_FastActionLink extends CRM_Core_Page {
     else {
       $values = civicrm_api3('FastActionLink', 'get', array());
     }
+    // "Action" here refers to the "Edit, Enable, Disable, Delete" actions, not any FAL actions.
     $action = CRM_Utils_Request::retrieve('action', 'String', $this, FALSE, 'browse');
-
-    // assign vars to templates
     $this->assign('action', $action);
 
     // what action to take ?

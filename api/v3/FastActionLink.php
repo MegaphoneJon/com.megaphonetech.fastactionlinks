@@ -72,11 +72,10 @@ function civicrm_api3_fast_action_link_execute($params) {
 }
 
 function _civicrm_api3_fast_action_link_getaction_spec(&$spec) {
-  $spec['action']['api.required'] = 1;
+  $spec['action_type']['api.required'] = 1;
 }
 
 function civicrm_api3_fast_action_link_getaction($params) {
-  $action = $params['action'];
-  return CRM_Fastactionlinks_Action::getAction($action);
-  ;
+  $action_type = $params['action_type'];
+  return CRM_Fastactionlinks_Action::getAction($action_type);
 }
