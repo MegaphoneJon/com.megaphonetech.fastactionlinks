@@ -37,9 +37,9 @@ DONE:
 * Update info.xml
 * Fix defaultValues not working
 * Fix the weight bug (on update)
+* Fix checkboxes being to "no" being ignored in the form
 
 TODO:
-* Fix checkboxes being set to "no" being ignored in the form
 * Better documentation
 * Email (remote) links
 

@@ -99,7 +99,6 @@ function fastactionlinks_civicrm_tokens(&$tokens) {
 //      $values[$cid] = empty($values[$cid]) ? $falTokens : $values[$cid] + $falTokens;
 //    }
 //  }
-//  CRM_Core_Error::debug_var('cids', $cids);
 //}
 
 /**

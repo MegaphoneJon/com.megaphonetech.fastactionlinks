@@ -108,7 +108,6 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     $defaults['is_active'] = 1;
     $defaults['dim_on_use'] = 1;
     if ($this->_id) {
-      CRM_Core_Error::debug_var('1', 'hi');
       $params = array('id' => $this->_id);
       CRM_Core_DAO::commonRetrieve('CRM_Fastactionlinks_DAO_FastActionLink', $params, $defaults);
     }
@@ -118,7 +117,6 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
   public function postProcess() {
     // store the submitted values in an array
     $params = $this->exportValues();
-    CRM_Core_Error::debug_var('params', $params);
     if ($this->_action == CRM_Core_Action::DELETE) {
       if ($this->_id) {
         CRM_Fastactionlinks_BAO_FastActionLink::del($this->_id);
@@ -129,6 +127,10 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
       if ($this->_id) {
         $params['id'] = $this->_id;
       }
+      // Ugh, what a terrible way to handle checkboxes, but OK.
+      $params['is_active'] = CRM_Utils_Array::value('is_active', $params, FALSE);
+      $params['dim_on_use'] = CRM_Utils_Array::value('dim_on_use', $params, FALSE);
+      $params['confirm'] = CRM_Utils_Array::value('confirm', $params, FALSE);
       CRM_Fastactionlinks_BAO_FastActionLink::create($params);
       CRM_Core_Session::setStatus(ts('Fast Action Link has been saved.'), ts('Saved'), 'success');
     }
