@@ -43,8 +43,6 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
 
   /**
    * Return an array of fast action links, filtered by profile ID.
-   * FIXME: The next line is false.
-   * No $profileId = return links for default search
    *
    * @param int $profileId
    * @return array
