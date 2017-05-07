@@ -19,3 +19,4 @@ markdown_extensions:
 pages:
   - Installation: index.md
   - Quick Start: quick-start.md
+  - CiviRules integration: civirules-integration.md
