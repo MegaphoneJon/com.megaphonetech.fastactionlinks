@@ -13,7 +13,7 @@
  */
 class CRM_Fastactionlinks_Util {
   public static function isCivirulesInstalled() {
-    $installed = TRUE;
+    $installed = FALSE;
     try {
       $extensions = civicrm_api3('Extension', 'get');
       foreach ($extensions['values'] as $ext) {
