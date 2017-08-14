@@ -1,6 +1,7 @@
 CRM.$(function ($) {
   displayActionEntity();
   $('#action_type').change(function () {
+    CRM.$('#action_entity_id').val("");
     displayActionEntity();
   });
 
@@ -22,7 +23,6 @@ function displayActionEntity() {
       } else {
         entityLabel = ts("Select a") + " " + ts(result.entityLabel);
         CRM.$("label[for='action_entity_id']").html(entityLabel);
-        CRM.$('#action_entity_id').val("");
 
         CRM.$('#action_entity_id').crmEntityRef({
           entity: result.entityName,
