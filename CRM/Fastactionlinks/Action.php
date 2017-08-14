@@ -96,7 +96,7 @@ class CRM_Fastactionlinks_Action {
       $result['is_error'] = 1;
       $result['error_message'] = $e->getMessage();
       // Give a more useful error when the error is "Unable to add tags".
-      if ($result['error_message'] == 'Unable to add tags') {
+      if ($result['error_message'] == ts('Unable to add tags')) {
         $result['error_message'] = ts("Unable to add tag. Most likely this contact already has that tag.");
       }
     }
@@ -123,7 +123,7 @@ class CRM_Fastactionlinks_Action {
       $result['is_error'] = 1;
       $result['error_message'] = $e->getMessage();
       // Give a more useful error when the error is "Unable to remove tags".
-      if ($result['error_message'] == 'Unable to remove tags') {
+      if ($result['error_message'] == ts('Unable to remove tags')) {
         $result['error_message'] = ts("Unable to remove tag. Most likely this contact doesn't have that tag.");
       }
     }

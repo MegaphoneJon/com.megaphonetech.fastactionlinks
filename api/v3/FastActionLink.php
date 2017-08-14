@@ -53,13 +53,13 @@ function civicrm_api3_fast_action_link_get($params) {
 function _civicrm_api3_fast_action_link_execute_spec(&$params) {
   $params['id'] = array(
     'title' => 'id',
-    'description' => 'Unique FastActionLink ID',
+    'description' => ts('Unique FastActionLink ID'),
     'type' => CRM_Utils_Type::T_INT,
     'api.required' => TRUE,
   );
   $params['entity_id'] = array(
     'title' => 'Entity ID',
-    'description' => 'Entity ID to take action on (usually a contact)',
+    'description' => ts('Entity ID to take action on (usually a contact)'),
     'type' => CRM_Utils_Type::T_INT,
     'api.required' => TRUE,
   );

@@ -4,7 +4,7 @@ CRM.$(function ($) {
     link = $(this)[0];
     // Show a confirmation dialog if appropriate
     if ($(this).hasClass('fast-action-link-confirm')) {
-    CRM.confirm("Are you sure you want to take this action?")
+    CRM.confirm(ts('Are you sure you want to take this action?'))
       .on('crmConfirm:yes', function () {
           execute(link);
         });
@@ -30,7 +30,7 @@ function execute(link) {
         CRM.alert(result.error_message, "", "error");
       } else {
         if (!result.success_message) {
-          result.success_message = "Action was successful";
+          result.success_message = ts('Action was successful');
         }
         CRM.alert(result.success_message, "", "success");
         if (result.dim_on_use == 1) {

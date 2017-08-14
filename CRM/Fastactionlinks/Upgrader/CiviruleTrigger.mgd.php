@@ -10,7 +10,7 @@ if (CRM_Fastactionlinks_Util::isCivirulesInstalled()) {
       array(
         'version' => 3,
         'name' => 'fast_action_link',
-        'label' => 'Fast Action Link',
+        'label' => ts('Fast Action Link'),
         'class_name' => 'CRM_Fastactionlinks_Trigger_Manual',
         'is_active' => 1,
       ),
