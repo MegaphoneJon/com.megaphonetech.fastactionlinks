@@ -2,7 +2,7 @@
 <extension key="com.megaphonetech.fastactionlinks" type="module">
   <file>fastactionlinks</file>
   <name>Fast Action Links</name>
-  <description>Add custom action links to speed up your workflow.</description>
+  <description>Add custom action links to your search results to speed up your workflow.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Jon Goldberg</author>
