@@ -190,7 +190,7 @@ function _fastactionlinks_civix_civicrm_managed(&$entities) {
     $es = include $file;
     foreach ($es as $e) {
       if (empty($e['module'])) {
-        $e['module'] = 'org.takethestreets.fastactionlinks';
+        $e['module'] = 'com.megaphonetech.fastactionlinks';
       }
       $entities[] = $e;
     }
@@ -219,7 +219,7 @@ function _fastactionlinks_civix_civicrm_caseTypes(&$caseTypes) {
       // throw new CRM_Core_Exception($errorMessage);
     }
     $caseTypes[$name] = array(
-      'module' => 'org.takethestreets.fastactionlinks',
+      'module' => 'com.megaphonetech.fastactionlinks',
       'name' => $name,
       'file' => $file,
     );
@@ -245,7 +245,7 @@ function _fastactionlinks_civix_civicrm_angularModules(&$angularModules) {
     $name = preg_replace(':\.ang\.php$:', '', basename($file));
     $module = include $file;
     if (empty($module['ext'])) {
-      $module['ext'] = 'org.takethestreets.fastactionlinks';
+      $module['ext'] = 'com.megaphonetech.fastactionlinks';
     }
     $angularModules[$name] = $module;
   }

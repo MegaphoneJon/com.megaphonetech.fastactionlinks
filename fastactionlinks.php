@@ -51,8 +51,8 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
   //Inject fal.js and fal.css when viewing search results.
   if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
-    CRM_Core_Resources::singleton()->addScriptFile('org.takethestreets.fastactionlinks', 'js/fal.js');
-    CRM_Core_Resources::singleton()->addStyleFile('org.takethestreets.fastactionlinks', 'css/fal.css');
+    CRM_Core_Resources::singleton()->addScriptFile('com.megaphonetech.fastactionlinks', 'js/fal.js');
+    CRM_Core_Resources::singleton()->addStyleFile('com.megaphonetech.fastactionlinks', 'css/fal.css');
   }
 }
 
@@ -241,7 +241,7 @@ function fastactionlinks_civicrm_preProcess($formName, &$form) {
  */
 function fastactionlinks_civicrm_navigationMenu(&$menu) {
   _fastactionlinks_civix_insert_navigation_menu($menu, 'Administer/Customize Data and Screens', array(
-    'label' => ts('Fast Action Links', array('domain' => 'org.takethestreets.fastactionlinks')),
+    'label' => ts('Fast Action Links', array('domain' => 'com.megaphonetech.fastactionlinks')),
     'name' => 'fast_action_link',
     'url' => 'civicrm/fastactionlink?reset=1',
     'permission' => 'access CiviCRM, administer CiviCRM',

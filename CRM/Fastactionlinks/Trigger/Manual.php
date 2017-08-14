@@ -2,7 +2,7 @@
 /**
  * Class for CiviRules manual trigger handling
  *
- * @author Jon Goldberg <work@takethestreets.org>
+ * @author Jon Goldberg <jon@megaphonetech.com>
  * @license AGPL-3.0
  */
 

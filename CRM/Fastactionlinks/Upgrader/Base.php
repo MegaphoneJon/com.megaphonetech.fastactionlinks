@@ -45,7 +45,7 @@ class CRM_Fastactionlinks_Upgrader_Base {
     if (!self::$instance) {
       // FIXME auto-generate
       self::$instance = new CRM_Fastactionlinks_Upgrader(
-        'org.takethestreets.fastactionlinks',
+        'com.megaphonetech.fastactionlinks',
         realpath(__DIR__ . '/../../../')
       );
     }

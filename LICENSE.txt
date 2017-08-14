@@ -1,5 +1,5 @@
-Package: org.takethestreets.fastactionlinks
-Copyright (C) 2016, Jon goldberg <jon@palantetech.coop>
+Package: com.megaphonetech.fastactionlinks
+Copyright (C) 2016, Jon Goldberg <jon@megaphonetech.com>
 Licensed under the GNU Affero Public License 3.0 (below).
 
 -------------------------------------------------------------------------------
