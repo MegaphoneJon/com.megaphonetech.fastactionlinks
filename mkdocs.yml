@@ -2,9 +2,6 @@ site_name: Fast Action Links
 repo_url: https://github.com/MegaphoneJon/com.megaphonetech.fastactionlinks
 theme: material
 
-pages:
-- Home: index.md
-
 markdown_extensions:
   - attr_list
   - admonition
