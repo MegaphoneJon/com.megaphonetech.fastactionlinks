@@ -1,5 +1,5 @@
 CRM.$(function ($) {
-  $('.fast-action-link').click(function () {
+  $('.fast-action-link').off().click(function () {
 
     link = $(this)[0];
     // Show a confirmation dialog if appropriate
