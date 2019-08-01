@@ -45,11 +45,11 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    * @access public
    * @static
    */
-  public static function process($ruleId, $objectId, $objectName) {
+  public static function process($ruleId, $objectId, $objectName, $falId) {
     // Find the rule corresponding to this ruleId.
     $trigger = CRM_Fastactionlinks_BAO_Rule::findRuleById($ruleId);
     if ($trigger instanceof CRM_Fastactionlinks_Trigger_Manual) {
-      $trigger->triggerTrigger($objectId, $objectName);
+      $trigger->triggerTrigger($objectId, $objectName, $falId);
     }
   }
 
@@ -61,8 +61,11 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    * @param $objectId
    * @param $objectRef
    */
-  public function triggerTrigger($objectId, $objectName) {
+  public function triggerTrigger($objectId, $objectName, $falId) {
     $objectRef = $this->getEntityData($objectId, $objectName);
+    // This might not be the best place for it, but we need the FAL ID in the triggerData object for
+    // FALs that call CiviExit (like FastActionPdf).
+    $objectRef['fast_action_link_id'] = $falId;
     $triggerData = $this->getTriggerDataFromManual($objectName, $objectId, $objectRef);
     CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
   }

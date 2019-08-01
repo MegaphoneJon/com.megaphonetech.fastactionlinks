@@ -29,6 +29,9 @@ function execute(link) {
       if (result.is_error) {
         CRM.alert(result.error_message, "", "error");
       } else {
+        if (result.url) {
+          window.open(result.url);
+        }
         if (!result.success_message) {
           result.success_message = ts('Action was successful');
         }
