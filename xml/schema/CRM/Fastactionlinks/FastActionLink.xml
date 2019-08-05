@@ -62,7 +62,7 @@
   </field>
   <field>
     <name>description</name>
-    <title>Description<title>
+    <title>Description</title>
     <type>varchar</type>
     <length>255</length>
     <comment>An internal description of this link.</comment>
@@ -123,5 +123,14 @@
     <default>1</default>
     <comment>Controls order in which links appear.</comment>
     <add>4.6</add>
+  </field>
+  <field>
+    <name>location</name>
+    <title>Location</title>
+    <type>varchar</type>
+    <length>255</length>
+    <required>true</required>
+    <comment>What template do we want to show these links on?</comment>
+    <add>5.0</add>
   </field>
 </table>
