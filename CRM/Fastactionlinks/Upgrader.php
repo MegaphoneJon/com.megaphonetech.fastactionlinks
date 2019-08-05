@@ -64,6 +64,16 @@ class CRM_Fastactionlinks_Upgrader extends CRM_Fastactionlinks_Upgrader_Base {
     CRM_Core_DAO::executeQuery('UPDATE foo SET is_active = 0 WHERE bar = "whiz"');
   }
 
+
+  /**
+   * remove managed entity
+   */
+  public function upgrade_1000() {
+    $this->ctx->log->info('Add location field to civicrm_fast_action_link');
+    \CRM_Upgrade_Incremental_Base::addColumn($this->ctx, 'civicrm_fast_action_link', 'location', "varchar(255) COMMENT 'What template do we want to show these links on?'");
+    return TRUE;
+  }
+
   /**
    * Example: Run a couple simple queries.
    *
