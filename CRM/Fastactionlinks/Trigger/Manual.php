@@ -63,11 +63,15 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    */
   public function triggerTrigger($objectId, $objectName, $falId) {
     $objectRef = $this->getEntityData($objectId, $objectName);
-    // This might not be the best place for it, but we need the FAL ID in the triggerData object for
-    // FALs that call CiviExit (like FastActionPdf).
+    // This probably doesn't belong here, but.
     $objectRef['fast_action_link_id'] = $falId;
     $triggerData = $this->getTriggerDataFromManual($objectName, $objectId, $objectRef);
-    CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
+    try {
+      $temp = CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
+    }
+    catch (Exception $e) {
+      $test = 1;
+    }
   }
 
   protected function getEntityData($objectId, $objectName) {
