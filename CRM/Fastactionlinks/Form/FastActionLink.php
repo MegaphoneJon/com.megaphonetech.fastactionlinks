@@ -19,6 +19,10 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     return 'FastActionLink';
   }
 
+  public function getDefaultContext() {
+    return 'create';
+  }
+
   public function buildQuickForm() {
     if ($this->_action == CRM_Core_Action::DELETE) {
       $this->addButtons(array(
@@ -35,35 +39,36 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     }
     else {
       // add form elements and help text.
-      $this->add('text', 'label', ts('Link Text'), NULL, TRUE);
+      $this->addField('label');
 
-      $this->add('text', 'description', ts('Description'), array('size' => 60));
+      $this->addField('description');
       $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->addSelect('uf_group_id', array('label' => 'Search View'), TRUE);
+      $this->addField('uf_group_id');
       $this->addHelp('uf_group_id', 'id-uf_group_id', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->addSelect('action_type', array('label' => 'Action'));
+      $this->addField('action_type');
       $this->addHelp('action_type', 'id-action_type', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('text', 'action_entity_id', ts('Select an entity'));
+      $this->addField('action_entity_id');
+      //$this->add('text', 'action_entity_id', ts('Select an entity'));
 
-      $this->add('text', 'hovertext', ts('Hover Text'), array('size' => 60));
+      $this->addField('hovertext');
       $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('text', 'success_message', ts('Success Message'), array('size' => 60));
+      $this->addField('success_message');
       $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('checkbox', 'dim_on_use', ts('Dim on Use?'));
+      $this->addField('dim_on_use');
       $this->addHelp('dim_on_use', 'id-dim_on_use', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('checkbox', 'confirm', ts('Confirmation box?'));
+      $this->addField('confirm');
       $this->addHelp('confirm', 'id-confirm', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
 
-      $this->add('text', 'weight', ts('Order'), CRM_Core_DAO::getAttribute('CRM_Fastactionlinks_DAO_FastActionLink', 'weight'), TRUE);
+      $this->addField('weight');
       $this->addRule('weight', ts('is a numeric field'), 'numeric');
 
-      $this->add('checkbox', 'is_active', ts('Is this link active?'));
+      $this->addField('is_active');
 
       $this->addButtons(array(
         array(

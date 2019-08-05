@@ -49,6 +49,9 @@
     <pseudoconstant>
       <callback>CRM_Fastactionlinks_PseudoConstant::actionTypes</callback>
     </pseudoconstant>
+    <html>
+      <type>Select</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -58,6 +61,9 @@
     <length>32</length>
     <required>true</required>
     <comment>This is the displayed text for the link.</comment>
+    <html>
+      <type>Text</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -66,6 +72,9 @@
     <type>varchar</type>
     <length>255</length>
     <comment>An internal description of this link.</comment>
+    <html>
+      <type>Text</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -74,6 +83,9 @@
     <type>varchar</type>
     <length>255</length>
     <comment>This is the text in the success message when the link is clicked.</comment>
+    <html>
+      <type>Text</type>
+    </html>s
     <add>4.6</add>
   </field>
   <field>
@@ -82,6 +94,9 @@
     <type>varchar</type>
     <length>255</length>
     <comment>This is the text displayed when you hover the mouse over the link.  It's a good place to put instructions.</comment>
+    <html>
+      <type>Text</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -89,6 +104,9 @@
     <title>Action Entity ID</title>
     <type>int unsigned</type>
     <comment>If the action requires an entity ID, it is stored here.</comment>
+    <html>
+      <type>Text</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -97,6 +115,9 @@
     <type>boolean</type>
     <default>1</default>
     <comment>Should this link be disabled and the corresponding search result dimmed on click?</comment>
+    <html>
+      <type>CheckBox</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -105,6 +126,9 @@
     <type>boolean</type>
     <default>0</default>
     <comment>Pop up a confirmation box when clicking this link?</comment>
+    <html>
+      <type>CheckBox</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -113,6 +137,9 @@
     <type>boolean</type>
     <default>1</default>
     <comment>Is this link currently active?  If not, do not show.</comment>
+    <html>
+      <type>CheckBox</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -122,6 +149,9 @@
     <required>true</required>
     <default>1</default>
     <comment>Controls order in which links appear.</comment>
+    <html>
+      <type>Text</type>
+    </html>
     <add>4.6</add>
   </field>
   <field>
@@ -131,6 +161,9 @@
     <length>255</length>
     <required>true</required>
     <comment>What template do we want to show these links on?</comment>
+    <html>
+      <type>Select</type>
+    </html>
     <add>5.0</add>
   </field>
 </table>
