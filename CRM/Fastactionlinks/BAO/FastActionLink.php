@@ -47,17 +47,17 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * @param int $profileId
    * @return array
    */
-  public function getFastActionLinks($profileId = NULL) {
-    $params = array(
-      'is_active' => 1,
-      'options' => array('sort' => "weight"),
-    );
+  public function getFastActionLinks($location, $profileId = NULL) {
+    $params = ['is_active' => 1,
+      'options' => ['sort' => "weight"],
+      'location' => $location,
+      ];
     // Get all FALs if no profile ID is set.
     if ($profileId) {
       $params['uf_group_id'] = $profileId;
     }
     $result = civicrm_api3('FastActionLink', 'get', $params);
-    $urls = array();
+    $urls = [];
     if ($result['count'] && !$result['is_error']) {
       foreach ($result['values'] as $k => $fal) {
         $urls[$k] = $this->createFastActionLinkUrl($fal);
@@ -94,9 +94,7 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
    * @return array $result Success/failure info; a redirect URL?
    */
   public static function execute($entityId, $falId) {
-    $params = array(
-      'id' => $falId,
-    );
+    $params = ['id' => $falId];
     try {
       $apiResult = civicrm_api3('FastActionLink', 'getsingle', $params);
     }

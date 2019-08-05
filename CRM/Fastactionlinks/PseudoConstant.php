@@ -25,4 +25,19 @@ class CRM_Fastactionlinks_PseudoConstant {
     return $searchProfiles;
   }
 
+  public static function supportedLocations() {
+    $locations = [
+      'CRM/Contact/Form/Search/Advanced.tpl' => 'Search Results',
+      'CRM/Contribute/Page/Tab.tpl' => 'Contact Contribution Tab',
+    ];
+    return $locations;
+  }
+
+  public static function entityIdFields() {
+    return [
+      'CRM/Contact/Form/Search/Advanced.tpl' => 'contact_id',
+      'CRM/Contribute/Page/Tab.tpl' => 'contribution_id',
+    ];
+  }
+
 }

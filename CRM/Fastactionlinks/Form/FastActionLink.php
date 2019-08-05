@@ -39,36 +39,29 @@ class CRM_Fastactionlinks_Form_FastActionLink extends CRM_Core_Form {
     }
     else {
       // add form elements and help text.
-      $this->addField('label');
+      //The value is whether help exists.
+      $fieldList = [
+        'location' => 0,
+        'label' => 0,
+        'description' => 1,
+        'uf_group_id' => 1,
+        'action_type' => 1,
+        'action_entity_id' => 0,
+        'hovertext' => 1,
+        'success_message' => 1,
+        'dim_on_use' => 1,
+        'confirm' => 1,
+        'weight' => 0,
+        'is_active' => 0,
+      ];
+      foreach ($fieldList as $field => $help) {
+        $this->addField($field);
+        if ($help) {
+          $this->addHelp($field, "id-{$field}", 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
+        }
+      }
 
-      $this->addField('description');
-      $this->addHelp('description', 'id-description', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('uf_group_id');
-      $this->addHelp('uf_group_id', 'id-uf_group_id', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('action_type');
-      $this->addHelp('action_type', 'id-action_type', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('action_entity_id');
-      //$this->add('text', 'action_entity_id', ts('Select an entity'));
-
-      $this->addField('hovertext');
-      $this->addHelp('hovertext', 'id-hovertext', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('success_message');
-      $this->addHelp('success_message', 'id-success_message', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('dim_on_use');
-      $this->addHelp('dim_on_use', 'id-dim_on_use', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('confirm');
-      $this->addHelp('confirm', 'id-confirm', 'CRM/Fastactionlinks/Form/FastActionLink.hlp');
-
-      $this->addField('weight');
       $this->addRule('weight', ts('is a numeric field'), 'numeric');
-
-      $this->addField('is_active');
 
       $this->addButtons(array(
         array(

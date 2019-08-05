@@ -71,6 +71,7 @@ class CRM_Fastactionlinks_Upgrader extends CRM_Fastactionlinks_Upgrader_Base {
   public function upgrade_1000() {
     $this->ctx->log->info('Add location field to civicrm_fast_action_link');
     \CRM_Upgrade_Incremental_Base::addColumn($this->ctx, 'civicrm_fast_action_link', 'location', "varchar(255) COMMENT 'What template do we want to show these links on?'");
+    CRM_Core_DAO::executeQuery('UPDATE civicrm_fast_action_link SET location = "CRM/Contact/Form/Search/Advanced.tpl"');
     return TRUE;
   }
 

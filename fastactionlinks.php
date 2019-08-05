@@ -9,36 +9,50 @@ function fastactionlinks_civicrm_entityTypes(&$entityTypes) {
     'table' => 'civicrm_fast_action_link',
   );
 }
+
 /**
- * Hook the search results to in Inject the links.
+ * Hook the supported locations to inject the links.
  * There's hook_civicrm_links which is much nicer, but it can't determine which search view is
  * in use.  Also we'd have to make API calls for every single row, not one per search result.
  */
 function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$object) {
-  // Only hook advanced search.
-  if ($tplName != 'CRM/Contact/Form/Search/Advanced.tpl') {
+  // Only hook supported locations.
+  $supportedLocations = CRM_Fastactionlinks_PseudoConstant::supportedLocations();
+  if (!isset($supportedLocations[$tplName])) {
     return;
   }
-  // Make sure we have search results and that this is a search view.
-  $searchViewId = $object->getVar('_ufGroupID');
-  $renderer = $object->getVar('_renderer');
-  $rows = $renderer->_tpl->_tpl_vars['rows'];
-  if (!isset($rows) || empty($searchViewId)) {
+
+  // If this is search results, make sure we have search results and that this is a search view.
+  if ($supportedLocations[$tplName] == 'Search Results') {
+    $searchViewId = $object->getVar('_ufGroupID');
+    $templateObject = $object->getVar('_renderer')->_tpl;
+  }
+  else {
+    $searchViewId = NULL;
+    $templateObject = $object->getTemplate();
+  }
+  $rows = $templateObject->_tpl_vars['rows'];
+  if (!isset($rows) || ($supportedLocations[$tplName] == 'Search Results' && empty($searchViewId))) {
     return;
   }
   // We have search results and a search view.  Get FALs.
-  $fal = new CRM_Fastactionlinks_BAO_FastActionLink($searchViewId);
-  $actionLinks = $fal->getFastActionLinks($searchViewId);
+  $fal = new CRM_Fastactionlinks_BAO_FastActionLink();
+  $actionLinks = $fal->getFastActionLinks($tplName, $searchViewId);
   // Create links for each FAL.
-  foreach ($rows as $cid => $row) {
+  if (!$actionLinks) {
+    return;
+  }
+  // We need to know which entity ID to use here.
+  $entityIdField = CRM_Fastactionlinks_PseudoConstant::entityIdFields()[$tplName];
+  foreach ($rows as $k => $row) {
     $newActions = "<span>";
     foreach ($actionLinks as $actionLink) {
-      $actionLink = str_replace('%%id%%', $cid, $actionLink);
+      $actionLink = str_replace('%%id%%', $row[$entityIdField], $actionLink);
       $newActions .= $actionLink;
     }
     $newActions .= str_replace("<span>", "", $row['action']);
-    $actions[$cid] = $row['action'];
-    $actions2[$cid] = $newActions;
+    $actions[$k] = $row['action'];
+    $actions2[$k] = $newActions;
     $content = str_replace($row['action'], $newActions, $content);
   }
 }
@@ -50,7 +64,7 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
  */
 function fastactionlinks_civicrm_buildForm($formName, &$form) {
   //Inject fal.js and fal.css when viewing search results.
-  if (strpos($formName, 'CRM_Contact_Form_Search_') === 0) {
+  if (strpos($formName, 'Form_Search')) {
     CRM_Core_Resources::singleton()->addScriptFile('com.megaphonetech.fastactionlinks', 'js/fal.js');
     CRM_Core_Resources::singleton()->addStyleFile('com.megaphonetech.fastactionlinks', 'css/fal.css');
   }

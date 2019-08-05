@@ -147,6 +147,7 @@
     <title>Order</title>
     <type>int</type>
     <required>true</required>
+    <rule>integer</rule>
     <default>1</default>
     <comment>Controls order in which links appear.</comment>
     <html>
@@ -164,6 +165,9 @@
     <html>
       <type>Select</type>
     </html>
+    <pseudoconstant>
+      <callback>CRM_Fastactionlinks_PseudoConstant::supportedLocations</callback>
+    </pseudoconstant>
     <add>5.0</add>
   </field>
 </table>
