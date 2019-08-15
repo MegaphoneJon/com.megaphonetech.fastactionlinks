@@ -41,13 +41,11 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    *
    * @param int $ruleId
    * @param int $objectId
-   * @param string $objectName
    * @access public
    * @static
    */
   public static function process($ruleId, $objectId, $falId) {
     // Find the rule corresponding to this ruleId.
-    // FIXME: Don't pass the object Name down to me.
     $trigger = CRM_Fastactionlinks_BAO_Rule::findRuleById($ruleId);
     if ($trigger instanceof CRM_Fastactionlinks_Trigger_Manual) {
       $location = civicrm_api3('FastActionLink', 'getvalue', [
@@ -78,10 +76,10 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
     $objectRef['fast_action_link_id'] = $falId;
     $triggerData = $this->getTriggerDataFromManual($objectName, $objectId, $objectRef);
     try {
-      $temp = CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
+      CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
     }
     catch (Exception $e) {
-      $test = 1;
+
     }
   }
 
@@ -110,14 +108,14 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    */
   protected function getTriggerDataFromManual($objectName, $objectId, $objectRef) {
     $entity = CRM_Civirules_Utils_ObjectName::convertToEntity($objectName);
-    $data = $this->convertObjectRefToDataArray($entity, $objectRef, $objectId);
+    $data = $this->convertObjectRefToDataArray($objectRef);
 
     $triggerData = new CRM_Fastactionlinks_TriggerData_Manual($entity, $objectId, $data);
     $this->alterTriggerData($triggerData);
     return $triggerData;
   }
 
-  protected function convertObjectRefToDataArray($entity, $objectRef, $id) {
+  protected function convertObjectRefToDataArray($objectRef) {
     //set data
     $data = array();
     if (is_object($objectRef)) {
