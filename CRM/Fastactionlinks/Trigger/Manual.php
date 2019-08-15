@@ -45,7 +45,7 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    * @access public
    * @static
    */
-  public static function process($ruleId, $objectId, $objectName, $falId) {
+  public static function process($ruleId, $objectId, $falId) {
     // Find the rule corresponding to this ruleId.
     // FIXME: Don't pass the object Name down to me.
     $trigger = CRM_Fastactionlinks_BAO_Rule::findRuleById($ruleId);
