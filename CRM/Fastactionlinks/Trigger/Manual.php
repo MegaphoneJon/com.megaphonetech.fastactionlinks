@@ -47,8 +47,19 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
    */
   public static function process($ruleId, $objectId, $objectName, $falId) {
     // Find the rule corresponding to this ruleId.
+    // FIXME: Don't pass the object Name down to me.
     $trigger = CRM_Fastactionlinks_BAO_Rule::findRuleById($ruleId);
     if ($trigger instanceof CRM_Fastactionlinks_Trigger_Manual) {
+      $location = civicrm_api3('FastActionLink', 'getvalue', [
+        'return' => "location",
+        'id' => $ruleId,
+      ]);
+      if ($location == 'CRM/Contribute/Page/Tab.tpl') {
+        $objectName = 'Contribution';
+      }
+      else {
+        $objectName = 'Contact';
+      }
       $trigger->triggerTrigger($objectId, $objectName, $falId);
     }
   }
