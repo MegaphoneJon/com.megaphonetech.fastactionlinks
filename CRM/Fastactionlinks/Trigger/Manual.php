@@ -50,7 +50,7 @@ class CRM_Fastactionlinks_Trigger_Manual extends CRM_Civirules_Trigger {
     if ($trigger instanceof CRM_Fastactionlinks_Trigger_Manual) {
       $location = civicrm_api3('FastActionLink', 'getvalue', [
         'return' => "location",
-        'id' => $ruleId,
+        'id' => $falId,
       ]);
       if ($location == 'CRM/Contribute/Page/Tab.tpl') {
         $objectName = 'Contribution';
