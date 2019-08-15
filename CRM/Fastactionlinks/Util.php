@@ -15,7 +15,7 @@ class CRM_Fastactionlinks_Util {
   public static function isCivirulesInstalled() {
     $installed = FALSE;
     try {
-      $extensions = civicrm_api3('Extension', 'get');
+      $extensions = civicrm_api3('Extension', 'get', ['options' => ['limit' => 0]]);
       foreach ($extensions['values'] as $ext) {
         if ($ext['key'] == 'org.civicoop.civirules' && ($ext['status'] == 'installed' || $ext['status'] == 'disabled')) {
           $installed = TRUE;
