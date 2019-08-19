@@ -107,6 +107,8 @@ class CRM_Fastactionlinks_BAO_FastActionLink extends CRM_Fastactionlinks_DAO_Fas
     $result = call_user_func('CRM_Fastactionlinks_Action::' . $apiResult['action_type'], $falData);
     $result['success_message'] = $apiResult['success_message'];
     $result['dim_on_use'] = $apiResult['dim_on_use'];
+    // Global var.  Ugly, but necessary because CiviRules isn't set up to return values to the calling function.
+    $result['url'] = Civi::$statics['fastactionlinks']['url'];
     return $result;
   }
 
