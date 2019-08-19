@@ -92,6 +92,10 @@ function fastactionlinks_civicrm_tokens(&$tokens) {
   }
 }
 
+function fastactionlinks_civicrm_alterAPIPermissions($entity, $action, &$params, &$permissions) {
+  $permissions['fast_action_link']['execute'] = ['access CiviCRM'];
+}
+
 /**
  * Implements hook_civicrm_tokenValues().
  *
