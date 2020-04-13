@@ -1,13 +1,15 @@
 site_name: Fast Action Links
 repo_url: https://github.com/MegaphoneJon/com.megaphonetech.fastactionlinks
-theme: material
+theme: 
+  name: material
 
 markdown_extensions:
   - attr_list
   - admonition
   - def_list
   - codehilite
-  - toc(permalink=true)
+  - toc:
+      permalink: true
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.tilde
