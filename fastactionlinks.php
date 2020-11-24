@@ -31,8 +31,8 @@ function fastactionlinks_civicrm_alterContent(&$content, $context, $tplName, &$o
     $searchViewId = NULL;
     $templateObject = $object->getTemplate();
   }
-  $rows = $templateObject->_tpl_vars['rows'];
-  if (!isset($rows) || ($supportedLocations[$tplName] == 'Search Results' && empty($searchViewId))) {
+  $rows = $templateObject->_tpl_vars['rows'] ?? NULL;
+  if (!$rows || ($supportedLocations[$tplName] == 'Search Results' && empty($searchViewId))) {
     return;
   }
   // We have search results and a search view.  Get FALs.
