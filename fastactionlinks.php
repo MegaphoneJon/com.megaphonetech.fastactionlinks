@@ -78,6 +78,7 @@ function fastactionlinks_civicrm_buildForm($formName, &$form) {
 function fastactionlinks_civicrm_tokens(&$tokens) {
   // TODO: Create a field in the db schema to indicate whether a token should be created.
   // TODO: Maybe also a "basic" vs. "fancy" token.
+  /*
   try {
     $params = array(
       'is_active' => 1,
@@ -90,6 +91,7 @@ function fastactionlinks_civicrm_tokens(&$tokens) {
   foreach ($result['values'] as $fal) {
     $tokens['fal']['fal_' . $fal['id']] = $fal['label'];
   }
+  */
 }
 
 function fastactionlinks_civicrm_alterAPIPermissions($entity, $action, &$params, &$permissions) {
